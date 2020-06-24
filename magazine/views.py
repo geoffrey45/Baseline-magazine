@@ -3,6 +3,7 @@ from django.http import HttpResponse,Http404
 from .models import Article
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 def index(request):
 	date = dt.date.today()
@@ -25,3 +26,4 @@ def search_results(request):
 	else:
 		message = 'Why? Just why!'
 		return render(request,'search.html',{'message':message})
+
