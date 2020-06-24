@@ -1,0 +1,21 @@
+#article-img {
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+  }
+  
+  .card.shadow-sm {
+	height: 470px;
+	float: left;
+	width: 400px;
+	border-radius: 20px;
+	margin-left: 20px;
+	margin-top: 20px;
+	border: 0;
+	background-color: rgb(4, 18, 26);
+	color: rgb(255, 255, 255);
+	box-shadow: black 4px 4px 4px 4px;
+  }
+

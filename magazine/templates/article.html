@@ -1,0 +1,92 @@
+{% load bootstrap4 %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/read.css' %}">
+
+{% bootstrap_css %}
+{% endblock %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{article.title}}</title>
+</head>
+
+<body class="text-light">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center" style="color: rgb(0,28,57);">{{article.title}}</h1>
+                    <p class="text-center" style="color: rgb(0,38,75);">Posted on {{article.pub_date}} | by {{article.editor}}</p>
+                    <div class="border rounded shadow-sm" id="article-image" style="background-image: url('{{article.article_image.url}}');">
+                        <div></div>
+                        <p id="photo-credits" style="color: rgb(0,24,48);">Photo by <a href="">{{article.photo_credits}}</a></p>
+                    </div>
+                    <div>
+                        <article></article>
+                    </div>
+                </div>
+                <div class="col col-xl-12" id="post" style="color: rgb(0,17,34);">
+                    <div style="font-size: 20px;font-family: Roboto, sans-serif;padding: 33px;">
+						<p>{{article.post}}</p>
+					</div>
+                </div>
+                <div class="col col-xl-12" id="comments">
+                    <div class="card">
+                        <div class="card-body" style="height:233px;">
+                            <h1 style="color: rgb(4,27,51);">From our readers</h1>
+                            <hr>
+                            <ul class="list-group">
+                                <li class="list-group-item" style="margin-bottom:6px;">
+                                    <div class="media">
+                                        <div></div>
+                                        <div class="media-body">
+                                            <div class="media" style="overflow:visible;">
+                                                <div><img src="assets/img/user-photo4.jpg" class="mr-3" style="width: 25px; height:25px;"></div>
+                                                <div class="media-body" style="overflow:visible;">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p><a href="#">Sara Doe:</a> This guy has been going 100+ MPH on side streets. <br>
+<small class="text-muted">August 6, 2016 @ 10:35am </small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" style="margin-bottom:6px;">
+                                    <div class="media">
+                                        <div></div>
+                                        <div class="media-body">
+                                            <div class="media" style="overflow:visible;">
+                                                <div><img src="assets/img/user-photo4.jpg" class="mr-3" style="width: 25px; height:25px;"></div>
+                                                <div class="media-body" style="overflow:visible;">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p><a href="#">Brennan Prill:</a> This guy has been going 100+ MPH on side streets. <br>
+<small class="text-muted">August 6, 2016 @ 10:35am </small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul><button class="btn btn-light" type="button" style="margin-left:601px;margin-top:-9px;">Add Comment</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+</div>
+</body>
+
+</html>

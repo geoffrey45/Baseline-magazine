@@ -1,0 +1,26 @@
+#article-image {
+	height: 400px;
+	width: auto;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-top: 20px;
+  }
+  
+  #photo-credits {
+	text-align: start;
+	padding: 5px;
+	font-size: small;
+  }
+  
+  #post {
+	margin-top: 10px;
+	border-left: 2px solid black;
+  }
+  
+  #comments {
+	border-left: 2px solid black;
+	padding-left: 0px;
+	color: black;
+  }
+  
