@@ -15,3 +15,13 @@ def article(request,article_id):
 	except ObjectDoesNotExist:
 		raise Http404()
 	return render(request,'article.html',{'article':article})
+
+def search_results(request):
+	if 'q' in request.GET and request.GET['q']:
+		search_term = request.GET.get('q')
+		searched_articles = Article.search(search_term)
+		message = f'{search_term}'
+		return render(request,'search.html',{'message':message,'articles':searched_articles})
+	else:
+		message = 'Why? Just why!'
+		return render(request,'search.html',{'message':message})

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -8,8 +7,15 @@
 </head>
 
 <body class="text-light">
-    <nav class="navbar navbar-light navbar-expand-md text-light shadow-sm">
-        <div class="container-fluid"><a class="navbar-brand text-uppercase" href="/" style="color: rgba(255, 255, 255, 0.9);">Baseline</a><button class="navbar-toggler bg-light" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <nav class="navbar navbar-light navbar-expand-md text-light shadow-sm justify-content-between form-inline">
+        <div class="container-fluid">
+            <a class="navbar-brand text-uppercase" href="/" style="color: rgba(255, 255, 255, 0.9);">Baseline</a>
+            <form class="form-inline float-right ml-auto navbar-nav" role="search" action="{% url 'search_results' %}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            <button class="navbar-toggler bg-light" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">

@@ -32,5 +32,10 @@ class Article(models.Model):
 
     @classmethod
     def all_articles(cls):
-        news = cls.objects.all()
-        return news
+        articles = cls.objects.all()
+        return articles
+        
+    @classmethod
+    def search(cls,search_term):
+        articles = cls.objects.filter(title__icontains = search_term)
+        return articles
