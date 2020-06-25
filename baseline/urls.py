@@ -8,3 +8,4 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls'),{'next_page':'/'}),
     url(r'^logout/$',views.logout,{'next_page':'/'}),
 ]
+
