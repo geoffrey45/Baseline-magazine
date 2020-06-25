@@ -1,10 +1,6 @@
 from django import forms
 from .views import Article
-from django.contrib.auth.models import User
-class NewsLetterForm(forms.Form):
-    your_name = User.first_name
-    email = User.email
-    
+from django.contrib.auth.models import User    
 class NewArticleForm(forms.ModelForm):
     class Meta:
         model = Article

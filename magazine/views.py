@@ -4,24 +4,23 @@ from .models import Article,NewsLetterRecipients
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from .forms import NewsLetterForm,NewArticleForm
+from .forms import NewArticleForm
 from .email import send_welcome_mail
 from tinymce.models import HTMLField
 
 def index(request):
     date = dt.date.today()
     articles = Article.all_articles()
-    form = NewsLetterForm()
-    return render(request,'index.html',{'articles': articles,'letterform':form})
-def newsletter(request):
-    name = request.POST.get('your_name')
-    email = request.POST.get('email')
+    return render(request,'index.html',{'articles': articles})
+# def newsletter(request):
+#     name = request.POST.get('your_name')
+#     email = request.POST.get('email')
 
-    recipient = NewsLetterRecipients(name=name,email=email)
-    recipient.save()
-    send_welcome_mail(name,email)
-    data = {'success':'You have been successfully added to mailing list'}
-    return JsonResponse(data)
+#     recipient = NewsLetterRecipients(name=name,email=email)
+#     recipient.save()
+#     send_welcome_mail(name,email)
+#     data = {'success':'You have been successfully added to mailing list'}
+#     return JsonResponse(data)
 
 @login_required(login_url='/accounts/login/')
 def article(request,article_id):
