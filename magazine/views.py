@@ -21,7 +21,8 @@ def index(request):
             send_welcome_mail(name,email)
 
             HttpResponseRedirect('news_today')
-
+    else:
+        form = NewsLetterForm()
     return render(request,'index.html',{'articles': articles,'letterform':form})
 
 @login_required(login_url='/accounts/login/')
