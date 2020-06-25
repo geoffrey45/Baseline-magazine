@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,Http404,HttpResponseRedirect
+from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from .models import Article,NewsLetterRecipients
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
@@ -11,20 +11,17 @@ from tinymce.models import HTMLField
 def index(request):
     date = dt.date.today()
     articles = Article.all_articles()
-    if request.method == 'POST':
-        form = NewsLetterForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
-
-            recipient = NewsLetterRecipients(name = name,email =email)
-            recipient.save()
-            send_welcome_mail(name,email)
-
-            HttpResponseRedirect('news_today')
-    else:
-        form = NewsLetterForm()
+    form = NewsLetterForm()
     return render(request,'index.html',{'articles': articles,'letterform':form})
+def newsletter(request):
+    name = request.POST.get('your_name')
+    email = request.POST.get('email')
+
+    recipient = NewsLetterRecipients(name=name,email=email)
+    recipient.save()
+    send_welcome_mail(name,email)
+    data = {'success':'You have been successfully added to mailing list'}
+    return JsonResponse(data)
 
 @login_required(login_url='/accounts/login/')
 def article(request,article_id):
