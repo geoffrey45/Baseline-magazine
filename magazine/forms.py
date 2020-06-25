@@ -1,9 +1,9 @@
 from django import forms
 from .views import Article
-
+from django.contrib.auth.models import User
 class NewsLetterForm(forms.Form):
-    your_name = forms.CharField(label='First Name',max_length=30)
-    email = forms.EmailField(label='Email')
+    your_name = User.first_name
+    email = User.email
     
 class NewArticleForm(forms.ModelForm):
     class Meta:

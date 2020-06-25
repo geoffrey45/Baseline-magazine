@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'bootstrap3',
     'tinymce',
+    'welcome'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,5 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+WELCOME_FROM_EMAIL = 'Your name geoffreymungai45@gmail.com'
