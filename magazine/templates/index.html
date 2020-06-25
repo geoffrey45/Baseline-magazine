@@ -11,6 +11,7 @@
 {% bootstrap_css %}
 {% endblock %}
 {% include 'navbar.html' %}
+{% block content %}
 {% for article in articles %}
 	<div class="col col-xl-4"></div>
 		<div class="shadow-sm">
@@ -32,6 +33,14 @@
 </div>
 {% endfor %}
 
+<div class="container-fluid">
+	<form action="{%url 'index' %}" method="POST">
+		{%csrf_token%}
+		{% bootstrap_form letterform%}
+		<input type="submit" value="Subscribe">
+	</form>
+</div>
+{% endblock %}
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 {% bootstrap_javascript %}

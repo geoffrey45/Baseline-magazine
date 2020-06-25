@@ -18,6 +18,12 @@ class tag(models.Model):
 	def __str__(self):
 		return self.name
 
+# class comment(models.Model):
+#     comment=models.TextField()
+#     id = models.
+#     def __str__(self):
+#         self.comment
+
 class Article(models.Model):
     title = models.CharField(max_length =60)
     post = models.TextField()
@@ -26,7 +32,7 @@ class Article(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     article_image = models.ImageField(upload_to='articles/',blank=True)
     photo_credits = models.CharField(max_length=30,blank=True)
-
+    # comments = models.ManyToManyField(comment)
     def __str__(self):
         return self.title
 
@@ -39,3 +45,13 @@ class Article(models.Model):
     def search(cls,search_term):
         articles = cls.objects.filter(title__icontains = search_term)
         return articles
+
+# class comments(models.Model):
+#     comment=models.TextField()
+#     def __str__(self):
+#         self.comment
+
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    
