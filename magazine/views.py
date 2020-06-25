@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import Article,NewsLetterRecipients
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm,NewArticleForm
 from .email import send_welcome_mail
+from tinymce.models import HTMLField
 
 def index(request):
     date = dt.date.today()
@@ -43,3 +44,17 @@ def search_results(request):
 		message = 'Why? Just why!'
 		return render(request,'search.html',{'message':message})
 
+@login_required(login_url='/accounts/login/')
+def new_article(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewArticleForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            article = form.save(commit=False)
+            article.editor = current_user
+            article.save()
+        return redirect('index')
+
+    else:
+        form = NewArticleForm()
+    return render(request, 'new_article.html', {"form": form})

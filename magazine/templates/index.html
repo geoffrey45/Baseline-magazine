@@ -1,5 +1,5 @@
 {% load bootstrap4 %}
-{% load static %}
+{% load staticfiles %}
 <title>Baseline Magazine</title>
 {% block styles %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -19,8 +19,8 @@
 				<div class="card-header justify-content-center" id="article-img" style="background-image: url('{{article.article_image.url}}');height: 480px;background-position: center;background-size: cover;"></div>
 				<div class="card-body" style="height: 400px;">
 					<h4 class="card-title">{{article.title}}</h4>
-					<h6 class="text-muted card-subtitle mb-2">Posted on {{article.pub_date}}</h6>
-					<p class="card-text">{{article.post}}</p><a class="card-link" href="/article/{{article.id}}" data-bs-hover-animate="pulse">Read more</a>
+					<h6 class="text-muted card-subtitle mb-2"> Posted on {{article.pub_date}} </h6>
+					<p class="card-text">{% autoescape on %}{{article.post|truncatechars:150 |safe}}{% endautoescape %}</p><a class="card-link" href="/article/{{article.id}}" data-bs-hover-animate="pulse">Read more</a>
 					<a
 						class="card-link justify-content-around align-self-baseline" href="#">Like</a>
 				</div>

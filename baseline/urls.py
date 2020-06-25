@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'',include('magazine.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls'),{'next_page':'/'}),
     url(r'^logout/$',views.logout,{'next_page':'/'}),
+    url(r'^tinymce/',include('tinymce.urls')),
 ]
 

@@ -34,7 +34,9 @@
                 </div>
                 <div class="col col-xl-12" id="post" style="color: rgb(0,17,34);">
                     <div style="font-size: 20px;font-family: Roboto, sans-serif;padding: 33px;">
-						<p>{{article.post}}</p>
+                        {% autoescape on %}
+                        <p>{{article.post| safe}}</p>
+                        {% endautoescape %}
 					</div>
                 </div>
                 <div class="col col-xl-12" id="comments">

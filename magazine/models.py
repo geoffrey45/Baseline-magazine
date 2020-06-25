@@ -1,5 +1,7 @@
 from django.db import models
 import datetime as dt
+from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 class Editor(models.Model):
 	first_name = models.CharField(max_length=30)
@@ -13,7 +15,7 @@ class Editor(models.Model):
 	def save_editor(self):
 		self.save()
 
-class tag(models.Model):
+class tags(models.Model):
 	name = models.CharField(max_length = 30)
 	def __str__(self):
 		return self.name
@@ -25,13 +27,13 @@ class tag(models.Model):
 #         self.comment
 
 class Article(models.Model):
-    title = models.CharField(max_length =60)
-    post = models.TextField()
-    editor = models.ForeignKey(Editor,on_delete = models.CASCADE)
-    tags = models.ManyToManyField(tag)
+    title = models.CharField(max_length=60)
+    post = HTMLField()
+    editor = models.ForeignKey(User,on_delete=models.CASCADE)
+    tag = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
-    article_image = models.ImageField(upload_to='articles/',blank=True)
-    photo_credits = models.CharField(max_length=30,blank=True)
+    article_image = models.ImageField(upload_to='articles/', blank=True)
+    photo_credits = models.CharField(max_length=60,default='unsplash.com')
     # comments = models.ManyToManyField(comment)
     def __str__(self):
         return self.title
