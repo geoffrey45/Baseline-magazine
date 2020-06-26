@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/card.css' %}">
+
 <link rel="stylesheet" href="{% static 'css/read.css' %}">
 
 {% bootstrap_css %}
@@ -39,3 +39,36 @@
 <!-- <script src="{% static 'javascript/script.js' %}" type="text/javascript"></script> -->
 {% bootstrap_javascript %}
 {% endblock %}
+
+<style>
+	#article-img {
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+  }
+  
+  .card.shadow-sm {
+	height: 470px;
+	float: left;
+	width: 400px;
+	border-radius: 20px;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	background-color: rgb(4, 18, 26);
+	color: rgb(255, 255, 255);
+	box-shadow: black 4px 4px 4px 4px;
+  }
+
+  @media (max-width: 640px) { 
+	.card.shadow-sm{
+		width: 90%;
+		position: relative;
+		left: 2%;
+	}
+	
+ }
+</style>

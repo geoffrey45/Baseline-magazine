@@ -4,7 +4,7 @@
 {% include 'navbar.html' %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% static 'css/card.css' %}">
+
 {% bootstrap_css %}
 {% endblock %}
 
@@ -40,3 +40,119 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 {% bootstrap_javascript %}
 {% endblock %}
+<!-- I had to import navbar styles due to unknown conflict  -->
+
+<style>
+    nav{
+      color: white;
+      -webkit-box-shadow: -1px 1px 8px 2px rgb(0, 0, 0);
+      -moz-box-shadow: -1px 1px 8px 2px rgb(0, 0, 0);
+      box-shadow: -1px 1px 8px 2px rgb(0, 0, 0);
+      width: 100%;
+      background-color: rgb(4, 18, 26);
+    }
+    nav a{
+        color: white;
+    }
+    .dropdown-menu {
+    left: 40%;
+    right: auto;
+    text-align: center !important;
+    transform: translate(0%, 0);
+    }
+    .form-control{
+		float: left;
+        position: relative;
+        left: 0;
+        height: 40px;
+        border-radius: 0;
+        margin-bottom: 0 !important;
+        border: 0;
+        width: 350px !important;
+        background-color: transparent;
+        font-size: 120%;
+        padding: 10px;
+	}
+    textarea:hover, 
+input:hover, 
+textarea:active, 
+textarea:focus, 
+input:focus,
+label:focus
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: white !important;
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
+    @media (max-width: 700px) { 
+	.navbar-brand{
+		display: none;
+	}
+	.form-control{
+		float: left;
+        position: relative;
+        left: 0;
+        height: 40px;
+        border-radius: 0;
+        margin-bottom: 0 !important;
+        border: 0;
+        width: 350px !important;
+        background-color: transparent;
+        font-size: 120%;
+        padding: 10px;
+    }
+   
+ }
+ @media (min-width: 700px) { 
+    .dropdown-menu{
+        left: 40% !important;
+        right: auto !important;
+        text-align: center !important;
+        transform: translate(-50%, 0) !important;
+        }
+        .navbar-collapse{
+            position: relative;
+            margin-right: 0 !important;
+        }
+        .log{
+            width: 400px !important;
+        }
+ }
+ 
+</style>
+
+<style>
+	#article-img {
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+  }
+  
+  .card.shadow-sm {
+	height: 470px;
+	float: left;
+	width: 400px;
+	border-radius: 20px;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	background-color: rgb(4, 18, 26);
+	color: rgb(255, 255, 255);
+	box-shadow: black 4px 4px 4px 4px;
+  }
+
+  @media (max-width: 640px) { 
+	.card.shadow-sm{
+		width: 90%;
+		position: relative;
+		left: 2%;
+	}
+	
+ }
+</style>

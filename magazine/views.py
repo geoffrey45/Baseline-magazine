@@ -7,6 +7,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import NewArticleForm
 from .email import send_welcome_mail
 from tinymce.models import HTMLField
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import magazineApiModel
+from .serializer import apiSerializer
+from rest_framework import status
+from .permissions import IsAuthenticatedOrReadOnly
 
 def index(request):
     date = dt.date.today()
@@ -54,3 +60,44 @@ def new_article(request):
     else:
         form = NewArticleForm()
     return render(request, 'new_article.html', {"form": form})
+
+class magazineList(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    def post(self,request,format=None):
+        serializers = apiSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data,status=status.HTTP_201_CREATED)
+            return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self,request,format=None):
+        all_items = magazineApiModel.objects.all()
+        serializers = apiSerializer(all_items,many=True)
+        return Response(serializers.data)
+
+class apiDescription(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    def get_item(self,pk):
+        try:
+            return magazineApiModel.objects.get(pk=pk)
+        except magazineApiModel.DoesNotExist:
+            return Http404
+    
+    def get(self,request,pk,format=None):
+        item = self.get_item(pk)
+        serializers = apiSerializer(item)
+        return Response(serializers.data)
+
+    def put(self,request,pk,format=None):
+        item = self.get_item(pk)
+        serializers = apiSerializer(item,request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors,status=HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,pk,format = None):
+        item = self.get_item(pk)
+        item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -58,3 +58,14 @@ class NewsLetterRecipients(models.Model):
     email = models.EmailField()
     def __str__(self):
         return self.name
+
+class magazineApiModel(models.Model):
+    title = models.CharField(max_length=100)
+    post = models.TextField()
+    editor = models.CharField(max_length=100)
+    taag = models.CharField(max_length=200)
+    article_imagee = models.CharField(max_length=200,blank=True)
+    photo_credits = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title

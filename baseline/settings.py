@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'bootstrap4',
     'bootstrap3',
     'tinymce',
-    'welcome'
+    'welcome',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -140,4 +142,8 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-WELCOME_FROM_EMAIL = 'Your name geoffreymungai45@gmail.com'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
