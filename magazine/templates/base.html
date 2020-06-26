@@ -1,0 +1,24 @@
+{% load bootstrap4 %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% block styles %}
+	{% bootstrap_css %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="{% static 'css/card.css' %}">
+	<link rel="stylesheet" href="{% static 'css/read.css' %}">
+	<link rel="stylesheet" href="{% static 'css/new_article.css' %}">
+	{% endblock %}
+</head>
+<body>
+	{% include 'navbar.html' %}
+	{% block content %} {% endblock %}
+	{% block scripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	{% bootstrap_javascript %}
+	{% endblock %}
+</body>
+</html>

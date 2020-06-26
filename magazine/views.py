@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
-from .models import NewsLetterRecipients,mode
+from .models import NewsLetterRecipients,mode,Editor
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,27 @@ from .models import magazineApiModel
 from .serializer import apiSerializer
 from rest_framework import status
 from .permissions import IsAuthenticatedOrReadOnly
+from django.contrib.auth.models import User
+from django.contrib.auth import login,authenticate
+# from django.contrib.auth.forms import UserCreationForm
+from .forms import SignUpForm
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username,password = raw_password)
+            login(request,user)
+            return redirect ('index')
+    else:
+        form = SignUpForm()
+    return render(request,'registration/registration_form.html',{'form':form})
+
 
 class magazineList(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -78,7 +99,6 @@ def article(request,article_id):
 	return render(request,'article.html',{'article':article})
 
 
-
 def search_results(request):
 	if 'q' in request.GET and request.GET['q']:
 		search_term = request.GET.get('q')
@@ -103,3 +123,7 @@ def new_article(request):
     else:
         form = NewArticleForm()
     return render(request, 'new_article.html', {"form": form})
+
+def view_profile(request):
+    bio = Editor.bio()
+    return render(request,'auth/profile.html',{'bio':bio})

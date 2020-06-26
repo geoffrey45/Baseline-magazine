@@ -27,11 +27,22 @@ br {
 .post :focus{
 	color: black !important;
 }
+.post :hover{
+	color: black !important;
+}
 #id_photo_credits{
 	width: 100% !important;
 	margin-bottom: 10px !important;
 	border-bottom: 2px solid black !important;
+	color: black;
+}
+#id_photo_credits:focus{
+	color: black !important;
+}
+#id_photo_credits:hover{
+	color: black !important;
+	background-color: transparent !important;
 }
 body {
-	background-color: rgb(104, 99, 99);
+	background-color: rgb(255, 255, 255);
 }

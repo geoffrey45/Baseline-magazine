@@ -3,3 +3,4 @@ virtual/
 .vscode/
 *.env
 articles/
+media/
