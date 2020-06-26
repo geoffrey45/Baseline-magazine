@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/navbar.css'%}">
+{% endblock %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 </head>
 
 <body>
-    <nav  class="navbar navbar-light navbar-expand-md text-light shadow-sm justify-content-between form-inline">
-        <div style="width: 100%; height: auto; background-color: rgb(4, 18, 26);" class="container-fluid" >
+    <nav  class="navbar navbar-light navbar-expand-md text-light justify-content-between form-inline">
+        <div style="width: 100%; height: auto;" class="container-fluid" >
             <a class="navbar-brand text-uppercase" href="/" style="color: rgb(255, 255, 255); position: relative; left: 0 !important; font-size: auto;">Baseline</a>
             <form class="nav navbar-nav" role="search" action="{% url 'search_results' %}">
                 <input class="nav navbar-nav form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
@@ -47,85 +50,5 @@
         </div>
     </nav>
 </body>
-<style>
-    nav{
-      color: white;
-      -webkit-box-shadow: -1px 1px 8px 2px rgb(0, 0, 0);
-      -moz-box-shadow: -1px 1px 8px 2px rgb(0, 0, 0);
-      box-shadow: -1px 1px 8px 2px rgb(0, 0, 0);
-      width: 100%;
-      background-color: rgb(4, 18, 26);
-    }
-    nav a{
-        color: white;
-    }
-    .dropdown-menu {
-    left: 40%;
-    right: auto;
-    text-align: center !important;
-    transform: translate(0%, 0);
-    }
-    .form-control{
-		float: left;
-        position: relative;
-        left: 0;
-        height: 40px;
-        border-radius: 0;
-        margin-bottom: 0 !important;
-        border: 0;
-        width: 350px !important;
-        background-color: transparent;
-        font-size: 120%;
-        padding: 10px;
-	}
-    textarea:hover, 
-input:hover, 
-textarea:active, 
-textarea:focus, 
-input:focus,
-label:focus
-{
-    outline:0px !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
-    background-color: transparent !important;
-    color: white !important;
-    border-bottom: 2px solid wheat;
-}
-    @media (max-width: 700px) { 
-	.navbar-brand{
-		display: none;
-	}
-	.form-control{
-		float: left;
-        position: relative;
-        left: 0;
-        height: 40px;
-        border-radius: 0;
-        margin-bottom: 0 !important;
-        border: 0;
-        width: 350px !important;
-        background-color: transparent;
-        font-size: 120%;
-        padding: 10px;
-    }
-   
- }
- @media (min-width: 700px) { 
-    .dropdown-menu{
-        left: 40% !important;
-        right: auto !important;
-        text-align: center !important;
-        transform: translate(-50%, 0) !important;
-        }
-        .navbar-collapse{
-            position: relative;
-            margin-right: 0 !important;
-        }
-        .log{
-            width: 400px !important;
-        }
- }
- 
-</style>
+
 </html>

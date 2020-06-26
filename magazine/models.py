@@ -30,7 +30,7 @@ class Article(models.Model):
     title = models.CharField(max_length=60)
     post = HTMLField()
     editor = models.ForeignKey(User,on_delete=models.CASCADE)
-    tag = models.ManyToManyField(tags)
+    tag = models.ManyToManyField(tags,blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     article_image = models.ImageField(upload_to='articles/', blank=True)
     photo_credits = models.CharField(max_length=60,default='unsplash.com')
@@ -61,11 +61,23 @@ class NewsLetterRecipients(models.Model):
 
 class magazineApiModel(models.Model):
     title = models.CharField(max_length=100)
-    post = models.TextField()
+    post = HTMLField()
     editor = models.CharField(max_length=100)
-    taag = models.CharField(max_length=200)
-    article_imagee = models.CharField(max_length=200,blank=True)
+    taag = models.CharField(max_length=200,blank=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    article_image = models.ImageField(upload_to='articles/')
     photo_credits = models.CharField(max_length=100)
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def all_articles(cls):
+        articles = cls.objects.all()
+        return articles
+    @classmethod
+    def search(cls,search_term):
+        articles = cls.objects.filter(title__icontains = search_term)
+        return articles
+
+mode = Article

@@ -1,0 +1,37 @@
+label{
+	display: inline !important;
+}
+#id_title{
+	width: 100% !important;
+	margin-bottom: 10px !important;
+	color: black !important;
+	border-bottom: 2px solid black !important;
+	outline: 0 !important;
+}
+#id_article_image{
+	width: 300px !important;
+	border: 0 !important;
+	background-color: rgb(95, 95, 95) !important;
+	color: white !important;
+}
+br {
+	width: 100% !important;
+}
+.post {
+	width: 20% !important;
+	border-radius: 0 !important;
+	position: relative;
+	left: 40% !important;
+	margin-bottom: 10px !important;
+}
+.post :focus{
+	color: black !important;
+}
+#id_photo_credits{
+	width: 100% !important;
+	margin-bottom: 10px !important;
+	border-bottom: 2px solid black !important;
+}
+body {
+	background-color: rgb(104, 99, 99);
+}
