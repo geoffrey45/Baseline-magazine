@@ -4,12 +4,24 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     bio = models.TextField(max_length=500,blank=True)
     location = models.CharField(max_length = 30,blank=True)
     birth_date = models.DateField(null=True,blank=True)
+    image = models.ImageField(upload_to='articles')
+    def __str__(self):
+        return f'self.user.username Profile'
+
+    def save(self):
+        super().save()
+        image = Image.open(self.image.path)
+        if image.height > 400 or image.width > 400:
+            output_size = (400,400)
+            image.thumbnail(output_size)
+            image.save(self.image.path)
 
 @receiver(post_save,sender=User)
 def update_user_profile(sender,instance,created,**kwargs):
@@ -96,6 +108,6 @@ class magazineApiModel(models.Model):
         articles = cls.objects.filter(title__icontains = search_term)
         return articles
 
-mode = Article
+mode = magazineApiModel
 
     

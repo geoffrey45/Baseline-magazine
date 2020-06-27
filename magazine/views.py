@@ -1,22 +1,21 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
-from .models import NewsLetterRecipients,mode,Editor
+from .models import NewsLetterRecipients,mode,Editor,Profile
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from .forms import NewArticleForm
+from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm
 from .email import send_welcome_mail
 from tinymce.models import HTMLField
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import magazineApiModel
+from .models import magazineApiModel,Profile
 from .serializer import apiSerializer
 from rest_framework import status
 from .permissions import IsAuthenticatedOrReadOnly
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate
-# from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm
+from django.contrib.auth.forms import UserCreationForm
 
 def signup(request):
     if request.method == 'POST':
@@ -38,6 +37,22 @@ def signup(request):
         form = SignUpForm()
     return render(request,'registration/registration_form.html',{'form':form})
 
+# @login_required(login_url='/accounts/login/')
+# def update_profile(request):
+#     if request.method == 'POST':
+#         form = UpdateProfileForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('view_profile')
+#     else:
+#         form = UpdateUserProfileForm()
+#     return render(request,'profile/update.html',{'form':form})
+
+def home(request):
+    context={
+        'profiles':Profile.objects.all()
+    }
+    return render(request,'home.html', context)
 
 class magazineList(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -94,7 +109,7 @@ def index(request):
 #     data = {'success':'You have been successfully added to mailing list'}
 #     return JsonResponse(data)
 
-@login_required(login_url='/signup/')
+@login_required(login_url='/accounts/login/')
 def article(request,article_id):
 	try:
 		article = mode.objects.get(id = article_id)
@@ -113,7 +128,7 @@ def search_results(request):
 		message = 'Why? Just why!'
 		return render(request,'search.html',{'message':message})
 
-@login_required(login_url='/signup/')
+@login_required(login_url='/accounts/login/')
 def new_article(request):
     current_user = request.user
     if request.method == 'POST':
@@ -128,5 +143,25 @@ def new_article(request):
         form = NewArticleForm()
     return render(request, 'new_article.html', {"form": form})
 
-def view_profile(request):
-    return render(request,'auth/profile.html')
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST,instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+    else:
+        user_form=UserUpdateForm(instance=request.user)
+        profile_form=ProfileUpdateForm(instance=request.user.profile)
+        context={
+            'u_form':user_form,
+            'p_form':profile_form
+        }
+
+    return render(request,'profile/update.html',context)
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    return render(request,'profile/profile.html')

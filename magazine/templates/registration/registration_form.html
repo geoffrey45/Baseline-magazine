@@ -1,6 +1,6 @@
 {% extends 'registration/base.html' %}
 {% load bootstrap4 %}
-
+<!-- this webpage is unresponsive, requires media queries -->
 {% block content %}
 <div class="container">
 	<div class="row">
@@ -20,6 +20,7 @@
 						{% bootstrap_form form %}
 						<div class="form-group">
 							<input type="submit" class="signup btn btn-primary" value="Sign Up">
+							<p>Have account? <a href="/accounts/login/">Login here</a> <a href="/">Home</a></p>
 						</div>
 						<input type="hidden" name="next" value="{{next}}">
 					</form>

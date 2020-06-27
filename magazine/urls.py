@@ -13,7 +13,8 @@ urlpatterns=[
 	# url(r'^ajax/newsletter/$',views.newsletter,name='newsletter'),
 	url(r'^api/model/$',views.magazineList.as_view()),
 	url(r'api/model/item-id/(?P<pk>[0-9]+)/$',views.apiDescription.as_view()),
-	url(r'^profile/$',views.view_profile,name='profile'),
+	url(r'^profile/update/$',views.update_profile,name='update_profile'),
+	url(r'^profile/$',views.profile,name='profile'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
