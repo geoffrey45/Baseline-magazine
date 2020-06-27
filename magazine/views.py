@@ -29,6 +29,10 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username,password = raw_password)
             login(request,user)
+            name = form.cleaned_data.get('first_name')
+            email = form.cleaned_data.get('email')
+            send_welcome_mail(name,email)
+            
             return redirect ('index')
     else:
         form = SignUpForm()
@@ -90,7 +94,7 @@ def index(request):
 #     data = {'success':'You have been successfully added to mailing list'}
 #     return JsonResponse(data)
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/signup/')
 def article(request,article_id):
 	try:
 		article = mode.objects.get(id = article_id)
@@ -109,7 +113,7 @@ def search_results(request):
 		message = 'Why? Just why!'
 		return render(request,'search.html',{'message':message})
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/signup/')
 def new_article(request):
     current_user = request.user
     if request.method == 'POST':
@@ -125,5 +129,4 @@ def new_article(request):
     return render(request, 'new_article.html', {"form": form})
 
 def view_profile(request):
-    bio = Editor.bio()
-    return render(request,'auth/profile.html',{'bio':bio})
+    return render(request,'auth/profile.html')
