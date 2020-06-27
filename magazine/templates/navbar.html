@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-{% load static %}
+{% load staticfiles %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/navbar.css'%}">
 {% endblock %}
 <head>
     <meta charset="utf-8">
@@ -10,11 +9,11 @@
 </head>
 
 <body>
-    <nav  class="navbar navbar-light navbar-expand-md text-light justify-content-between form-inline">
+    <nav  class="navbar navbar-light navbar-expand-md text-light justify-content-between form-inline shadow-sm" style="background-color: rgb(4, 18, 26);">
         <div style="width: 100%; height: auto;" class="container-fluid" >
-            <a class="navbar-brand text-uppercase" href="/" style="color: rgb(255, 255, 255); position: relative; left: 0 !important; font-size: auto;">Baseline</a>
+            <a class="navbar-brand text-uppercase text-light" href="/" style=" position: relative; left: 0 !important; font-size: auto;">Baseline</a>
             <form class="nav navbar-nav" role="search" action="{% url 'search_results' %}">
-                <input class="nav navbar-nav form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                <input class="nav navbar-nav form-control mr-sm-2 search_form" type="search" placeholder="Search" style="padding: 5px;" aria-label="Search" name="q">
               </form>
               {% if user.is_authenticated %}
                 <div class="nav navbar-nav log" style="margin-left: 10px;">Logged in as {{user.username}}</div>
@@ -26,7 +25,7 @@
             {% if user.is_authenticated %}
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link flex-row flex-grow-1 flex-fill" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255, 255, 255); margin-right: 70px;">Profile</a>
+                    <li class="nav-item dropdown"><a class="text-light dropdown-toggle nav-link flex-row flex-grow-1 flex-fill" data-toggle="dropdown" aria-expanded="false" href="#" style="margin-right: 70px;">Profile</a>
                         <div class="dropdown-menu border rounded shadow-sm flex-column" role="menu"
                             style="margin: 20px 0px 10px 0px;">
                             <h6 class="dropdown-header" role="presentation">Account actions</h6><a class="dropdown-item" role="presentation" href="{% url 'new_article' %}">Write</a>

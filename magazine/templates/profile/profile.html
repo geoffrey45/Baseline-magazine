@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
-{% block content %}
-<h1>Hello {{user.username}}</h1>
-<h2>This is your email: {{user.email}}</h2>
-<h3>This is your birthdate:{{user.profile.birth_date}}</h3>
-<h4>This is your bio:{{user.profile.bio}}</h4>
-<h5>This is your location:{{user.profile.location}}</h5>
-<h6>This is your profile picture:{{user.profile.image}}</h6>
-<img src="{{ user.profile.image.url }}" alt="">
+{% load staticfiles %}
+{% load  bootstrap4%}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
-<a href="/profile/update">Update Profile</a>
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-card">
+                        <div class="profile-back" style="background-color: rgb(4, 18, 26);"></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image.url}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                        <h3 class="profile-name" style="background-color: rgb(4, 18, 26);">{{user.username}}</h3>
+                        <p class="profile-bio">{{user.profile.bio}}</p>
+                        <ul class="social-list">
+                            <li>Location: <strong>{{user.profile.location}}</strong></li>
+                            <li>Email: <strong>{{user.email}}</strong></li>
+                            <li>Born on:<strong>{{user.profile.birth_date}}</strong></li>
+                        </ul>
+                    </div><a class="btn btn-light btn-sm border rounded-0 switchhover1" role="button" href="/profile/update/">Update</a></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
 {% endblock %}

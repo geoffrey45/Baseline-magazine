@@ -29,6 +29,14 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username','email']
 
 class ProfileUpdateForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
+    last_name = forms.CharField(max_length = 24,required=False)
+    email = forms.EmailField(max_length = 200,help_text='Required')
+    birth_date = forms.DateField(help_text='required. Format: YYYY-MM-DD')
+
     class Meta:
         model = Profile
         fields = ['image','location','birth_date','bio']
+
+
+subject = forms.CharField(label='subject', max_length=100 , widget=forms.TextInput(attrs={'class': "form-control"}))

@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% load  bootstrap4%}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/card.css' %}">
+{% endblock %}
 
 {% block content %}
 {% for article in articles %}

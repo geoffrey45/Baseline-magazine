@@ -109,5 +109,3 @@ class magazineApiModel(models.Model):
         return articles
 
 mode = magazineApiModel
-
-    
