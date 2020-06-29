@@ -24,9 +24,21 @@
 		</div>
 	</div>
 {% empty %}
-<div class="row">
-	<h2 class="text-center" >Oops.There is no Articles</h2>
-</div>
+	<h2 class="text-center text-primary">Oops.There is nothing here</h2>
 {% endfor %}
-
+{% if articles.has_other_pages %}
+<div>
+  <nav aria-label="Page navigation conatiner"></nav>
+  <ul class="pagination justify-content-center float-left" style="position: relative; left: 45%;">
+    {% if articles.has_previous %}
+    <li><a href="?page={{ articles.previous_page_number }}" class="page-link" style="margin-right: 10px;">&laquo; PREV </a></li>
+	{% endif %}
+	<li><a class="page-link disabled" style="margin-right: 10px;">{{ articles.number}} of {{articles.paginator.num_pages}}</a></li>
+    {% if articles.has_next %}
+    <li><a href="?page={{ articles.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+   {% endif %}
+  </ul>
+  </nav>
+</div>
+{% endif %}
 {% endblock %}

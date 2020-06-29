@@ -11,20 +11,20 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500,blank=True)
     location = models.CharField(max_length = 30,blank=True)
     birth_date = models.DateField(null=True,blank=True)
-    image = models.ImageField(upload_to='articles')
+    image = models.ImageField(upload_to='articles',default='articles/yhb5DBT91u4_Regular.jpg',blank=True)
     def __str__(self):
-        return f'self.user.username Profile'
+        return (self.user.first_name)
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
         image = Image.open(self.image.path)
         if image.height > 400 or image.width > 400:
             output_size = (400,400)
             image.thumbnail(output_size)
             image.save(self.image.path)
 
-@receiver(post_save,sender=User)
-def update_user_profile(sender,instance,created,**kwargs):
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
@@ -48,21 +48,23 @@ class tags(models.Model):
 	def __str__(self):
 		return self.name
 
-# class comment(models.Model):
-#     comment=models.TextField()
-#     id = models.
-#     def __str__(self):
-#         self.comment
+
+STATUS = (
+    (0,"Draft"),
+    (1,"Publish")
+)
 
 class Article(models.Model):
     title = models.CharField(max_length=60)
+    slug = models.SlugField(max_length=200, unique=True)
+    status = models.IntegerField(choices=STATUS, default=0)
     post = HTMLField()
-    editor = models.ForeignKey(User,on_delete=models.CASCADE)
+    editor = models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
     tag = models.ManyToManyField(tags,blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     article_image = models.ImageField(upload_to='articles/', blank=True)
     photo_credits = models.CharField(max_length=60,default='unsplash.com')
-    # comments = models.ManyToManyField(comment)
+    
     def __str__(self):
         return self.title
 
@@ -76,17 +78,19 @@ class Article(models.Model):
         articles = cls.objects.filter(title__icontains = search_term)
         return articles
 
-# class comments(models.Model):
-#     comment=models.TextField()
-#     def __str__(self):
-#         self.comment
-
-class NewsLetterRecipients(models.Model):
-    name = models.CharField(max_length=30)
+class Comment(models.Model):
+    post = models.ForeignKey(Article,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
     email = models.EmailField()
-    def __str__(self):
-        return self.name
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
 class magazineApiModel(models.Model):
     title = models.CharField(max_length=100)
     post = HTMLField()
@@ -108,4 +112,4 @@ class magazineApiModel(models.Model):
         articles = cls.objects.filter(title__icontains = search_term)
         return articles
 
-mode = magazineApiModel
+mode = Article

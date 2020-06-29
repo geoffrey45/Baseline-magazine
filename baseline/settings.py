@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'baseline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '_baseline',
+        'NAME': '__baseline',
         'USER':'cwilv',
         'PASSWORD':'iamcwilv',
     }

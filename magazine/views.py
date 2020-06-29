@@ -1,58 +1,37 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
-from .models import NewsLetterRecipients,mode,Editor,Profile
+from .models import mode,Editor,Profile,Comment
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm
+from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm,UpdateArticleForm,CommentForm
 from .email import send_welcome_mail
 from tinymce.models import HTMLField
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import magazineApiModel,Profile
 from .serializer import apiSerializer
 from rest_framework import status
 from .permissions import IsAuthenticatedOrReadOnly
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.refresh_from_db()
+            user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.birth_date = form.cleaned_data.get('birth_date')
             user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username,password = raw_password)
-            login(request,user)
-            name = form.cleaned_data.get('first_name')
-            email = form.cleaned_data.get('email')
-            send_welcome_mail(name,email)
-            
-            return redirect ('index')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('index')
     else:
         form = SignUpForm()
-    return render(request,'registration/registration_form.html',{'form':form})
-
-# @login_required(login_url='/accounts/login/')
-# def update_profile(request):
-#     if request.method == 'POST':
-#         form = UpdateProfileForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('view_profile')
-#     else:
-#         form = UpdateUserProfileForm()
-#     return render(request,'profile/update.html',{'form':form})
-
-def home(request):
-    context={
-        'profiles':Profile.objects.all()
-    }
-    return render(request,'home.html', context)
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 class magazineList(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -98,35 +77,49 @@ class apiDescription(APIView):
 def index(request):
     date = dt.date.today()
     articles = mode.all_articles()
-    return render(request,'index.html',{'articles': articles})
-# def newsletter(request):
-#     name = request.POST.get('your_name')
-#     email = request.POST.get('email')
+    paginator = Paginator(articles,3)
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+    return render(request,'index.html',{'page':page,'articles':articles})
 
-#     recipient = NewsLetterRecipients(name=name,email=email)
-#     recipient.save()
-#     send_welcome_mail(name,email)
-#     data = {'success':'You have been successfully added to mailing list'}
-#     return JsonResponse(data)
 
-@login_required(login_url='/accounts/login/')
-def article(request,article_id):
-	try:
-		article = mode.objects.get(id = article_id)
-	except ObjectDoesNotExist:
-		raise Http404()
-	return render(request,'article.html',{'article':article})
+def article(request, article_id):
+    post = mode.objects.get(id = article_id)
+    template_name = 'article/article.html'
+    # post = get_object_or_404(mode,id = article_id)
+    comments = post.comments.filter(active=True)
+    new_comment = None
 
+    if request.method == 'POST':
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+    else:
+        form = CommentForm()
+
+    return render(request, template_name, {'post': post,
+                                           'comments': comments,
+                                           'new_comment': new_comment,
+                                           'form': form})
 
 def search_results(request):
-	if 'q' in request.GET and request.GET['q']:
-		search_term = request.GET.get('q')
-		searched_articles = mode.search(search_term)
-		message = f'{search_term}'
-		return render(request,'search.html',{'message':message,'articles':searched_articles})
-	else:
-		message = 'Why? Just why!'
-		return render(request,'search.html',{'message':message})
+    if 'q' in request.GET and request.GET['q']:
+        search_term = request.GET.get('q')
+        articles = mode.search(search_term)
+        message = f'{search_term}'
+        
+        return render(request,'article/search.html',{'message':message,'articles':articles})
+    else:
+        message = 'Why? Just why!'
+        return render(request,'article/search.html',{'message':message})
 
 @login_required(login_url='/accounts/login/')
 def new_article(request):
@@ -141,7 +134,20 @@ def new_article(request):
 
     else:
         form = NewArticleForm()
-    return render(request, 'new_article.html', {"form": form})
+    return render(request, 'article/new_article.html', {"form": form})
+
+# @login_required(login_url='/accounts/login/')
+# def update_article(request,article_id):
+#     instance = mode.objects.get(id = article_id)
+#     if request.method == 'POST':
+#         form = UpdateArticleForm(request.POST, request.FILES,instance=instance)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('index')
+#     else:
+#         form = UpdateArticleForm(instance=instance)
+#     return render(request,'article/update.html',{'form':form})
+
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):

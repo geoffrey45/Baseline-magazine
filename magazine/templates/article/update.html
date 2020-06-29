@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/update_profile.css' %}">
+{% endblock %}
+{% block scripts %}
+{% bootstrap_javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'upload.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+<form action="{% url 'update_article' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<button class="btn btn-primary" type="submit">Update</button>
+</form>
+{% endblock %}
