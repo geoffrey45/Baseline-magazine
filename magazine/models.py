@@ -11,7 +11,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500,blank=True)
     location = models.CharField(max_length = 30,blank=True)
     birth_date = models.DateField(null=True,blank=True)
-    image = models.ImageField(upload_to='articles',default='articles/yhb5DBT91u4_Regular.jpg',blank=True)
+    image = models.ImageField(upload_to='articles',default='articles/yhb5DBT91u4_Regular.jpg')
     def __str__(self):
         return (self.user.first_name)
 
@@ -56,7 +56,6 @@ STATUS = (
 
 class Article(models.Model):
     title = models.CharField(max_length=60)
-    slug = models.SlugField(max_length=200, unique=True)
     status = models.IntegerField(choices=STATUS, default=0)
     post = HTMLField()
     editor = models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
@@ -91,6 +90,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+    
 class magazineApiModel(models.Model):
     title = models.CharField(max_length=100)
     post = HTMLField()

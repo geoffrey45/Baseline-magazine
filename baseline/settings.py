@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'welcome',
     'rest_framework',
     'rest_framework.authtoken',
-    'crispy_forms'
+    'crispy_forms',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'baseline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '__baseline',
+        'NAME': '___baseline',
         'USER':'cwilv',
         'PASSWORD':'iamcwilv',
     }
@@ -148,3 +149,4 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+

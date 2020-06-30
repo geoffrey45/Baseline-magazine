@@ -115,7 +115,7 @@ def search_results(request):
         search_term = request.GET.get('q')
         articles = mode.search(search_term)
         message = f'{search_term}'
-        
+
         return render(request,'article/search.html',{'message':message,'articles':articles})
     else:
         message = 'Why? Just why!'
@@ -136,17 +136,17 @@ def new_article(request):
         form = NewArticleForm()
     return render(request, 'article/new_article.html', {"form": form})
 
-# @login_required(login_url='/accounts/login/')
-# def update_article(request,article_id):
-#     instance = mode.objects.get(id = article_id)
-#     if request.method == 'POST':
-#         form = UpdateArticleForm(request.POST, request.FILES,instance=instance)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-#     else:
-#         form = UpdateArticleForm(instance=instance)
-#     return render(request,'article/update.html',{'form':form})
+@login_required(login_url='/accounts/login/')
+def update_article(request,article_id):
+    instance = mode.objects.get(id = article_id)
+    if request.method == 'POST':
+        form = UpdateArticleForm(request.POST, request.FILES,instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = UpdateArticleForm(instance=instance)
+    return render(request,'article/update.html',{'form':form})
 
 
 @login_required(login_url='/accounts/login/')
@@ -161,9 +161,9 @@ def update_profile(request):
     else:
         user_form=UserUpdateForm(instance=request.user)
         profile_form=ProfileUpdateForm(instance=request.user.profile)
-        context={
-            'u_form':user_form,
-            'p_form':profile_form
+    context={
+        'u_form':user_form,
+        'p_form':profile_form
         }
 
     return render(request,'profile/update.html',context)

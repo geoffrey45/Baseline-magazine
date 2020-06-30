@@ -3,14 +3,13 @@ from .models import Editor,Article,tags,magazineApiModel,Profile,Comment
 
 class ArticleAdmin(admin.ModelAdmin):
 	filter_horizontal = ('tag',)
-	list_display = ('title','pub_date')
+	list_display = ('title','pub_date','status')
 	list_filter = ('status',)
 	search_fields = ['title']
-	prepopulated_fields = {'slug':('title',)}
-
+ 
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ('name','body','post','created_on','active')
-	list_filter = ('active','created_on')
+	list_filter =     ('active','created_on')
 	search_fields = ('name','email','body')
 	actions = ['approve_comments']
 
