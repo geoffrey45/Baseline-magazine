@@ -17,7 +17,7 @@
   .profile-card {
 	text-align: center;
 	margin-bottom: 15px;
-	border: 1px solid #9b1f1f;
+	border: 1px solid #888888;
 	border-radius: 20px;
   }
   
@@ -63,8 +63,8 @@
   .wrapper {
 	position: relative;
 	width: 80%;
-	left: 10%;
-	margin-top: 5%;
+	/* left: 10%; */
+	margin-top: 27px;
   }
   
   .btn.btn-light.btn-sm.border.rounded-0.switchhover1 {

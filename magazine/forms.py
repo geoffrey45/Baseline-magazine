@@ -11,17 +11,12 @@ class NewArticleForm(forms.ModelForm):
         widgets = {
             'tag': forms.CheckboxSelectMultiple(),
         }
-
-class UpdateArticleForm(forms.ModelForm):
-    class Meta:
-        model = mode
-        fields = ['title','article_image','post','tag','photo_credits']
-
-
+        
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', )     
+        fields = ('username', 'password1', 'password2',)    
+         
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(max_length=200)
 
@@ -34,7 +29,16 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image','location','birth_date','bio']
+        
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name','email','body')
+        
+class UpdateArticleForm(forms.ModelForm):
+    class Meta:
+        model = mode
+        exclude = ('editor','pub_date')
+        widgets = {
+            'tag':forms.CheckboxSelectMultiple(),
+        }

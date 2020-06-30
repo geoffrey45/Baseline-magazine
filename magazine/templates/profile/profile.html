@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% load  bootstrap4%}
 {% block styles %}
 {% bootstrap_css %}
@@ -17,10 +17,10 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper card" style="width: 100%;">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-top: 40px;">
                     <div class="profile-card">
                         <div class="profile-back" style="background-color: rgb(4, 18, 26);"></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image.url}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
                         <h3 class="profile-name" style="background-color: rgb(4, 18, 26);">{{user.username}}</h3>

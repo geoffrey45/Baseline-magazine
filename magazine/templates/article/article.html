@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 {% load bootstrap4 %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
+  <div class="row" style="margin-top: 9px;">
+    <div class="col-md-12 card mb-4  mt-3 left  top" >
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
         <div style="background-image: url('{{post.article_image.url}}'); background-position: center; background-size: cover; height: 300px;"></div>
@@ -11,8 +11,13 @@
       </div>
     </div>
 
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-12 card mb-4  mt-3 ">
       <div class="card-body">
+      
+      {% if post.editor == request.user %}
+        <a href="/update/{{post.id}}" class="btn btn-secondary">Update</a>
+      {% endif %}
+        
         <!-- comments -->
         <h2>{{ comments.count }} comments</h2>
 

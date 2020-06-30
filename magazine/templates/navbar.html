@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-{% load staticfiles %}
+{% load static %}
 {% block styles %}
 {% endblock %}
 <head>
@@ -9,48 +9,54 @@
 </head>
 
 <body>
-    <nav  class="navbar navbar-light navbar-expand-md text-light justify-content-between form-inline shadow-sm" style="background-color: rgb(4, 18, 26);">
-        <div style="width: 100%; height: auto;" class="container-fluid" >
-            <a class="navbar-brand text-uppercase text-light" href="/" style=" position: relative; left: 0 !important; font-size: auto;">Baseline</a>
-            <form class="nav navbar-nav" role="search" action="{% url 'search_results' %}">
-                <input class="nav navbar-nav form-control mr-sm-2 search_form" type="search" placeholder="Search" style="padding: 5px;" aria-label="Search" name="q">
-              </form>
-              {% if user.is_authenticated %}
-                <div class="nav navbar-nav log" style="margin-left: 10px;">Logged in as {{user.username}}</div>
-              {% else %}
-                <div class="nav navbar-nav log" style="margin-left: 10px;">Logged out</div>
-              {% endif %}
-            <button class="navbar-toggler bg-light" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+    <nav  class="navbar navbar-dark bg-dark navbar-expand-md text-light justify-content-between form-inline shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">Baseline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            {% if user.is_authenticated %}
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="text-light dropdown-toggle nav-link flex-row flex-grow-1 flex-fill" data-toggle="dropdown" aria-expanded="false" href="#" style="margin-right: 70px;">Profile</a>
-                        <div class="dropdown-menu border rounded shadow-sm flex-column" role="menu"
-                            style="margin: 20px 0px 10px 0px;">
-                            <h6 class="dropdown-header" role="presentation">Account actions</h6><a class="dropdown-item" role="presentation" href="{% url 'new_article' %}">Write</a>
-                            <a class="dropdown-item" role="presentation" href="{% url 'profile' %}">Profile</a>
-                            
-                            <a class="dropdown-item" role="presentation" href="/accounts/password/change">Change password</a>
-                            <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="/admin/">Admin</a><a class="dropdown-item" role="presentation" href="/logout/">Logout</a></div>
-                    </li>
-                </ul>
+            
+            {% if request.user.is_authenticated %}
+                 <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "new_article" %}">Write
+                    <span class="sr-only"></span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "profile" %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/password/change">Change password</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              </ul>
             </div>
             {% else %}
-            <div class="collapse navbar-collapse" id="navcol-1" style="margin-right: 100px;">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link flex-row flex-grow-1 flex-fill" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255, 255, 255);  margin-right: 70px;">Profile</a>
-                        <div class="dropdown-menu border rounded shadow-sm flex-column" role="menu"
-                            style="margin: 20px 0px 10px 0px;">
-                            <h6 class="dropdown-header" role="presentation">Account actions</h6>
-                            <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="/accounts/login">Login</a><a class="dropdown-item" role="presentation" href="/signup/">Register with profile</a><a class="dropdown-item" role="presentation" href="/accounts/register/">Register</a><a class="dropdown-item" role="presentation" href="/admin/">Admin</a></div>
-                    </li>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login">Login
+                      <span class="sr-only"></span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/accounts/register">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                  </li>
                 </ul>
-            </div>
+              </div>
             {% endif %}
-            
-        </div>
-    </nav>
+          </div>
+    </nav> 
 </body>
 
 </html>

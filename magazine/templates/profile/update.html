@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% extends 'profile/base.html' %}
 {% load bootstrap4 %}
 {% load widget_tweaks %}
 
@@ -53,7 +52,7 @@
                     <div class="form-row">
                         <div class="col-md-12 content-right">
                             <button class="btn btn-primary form-btn" type="submit">SAVE </button>
-                            <button class="btn btn-danger form-btn" type="reset">CANCEL </button>
+                            <a href="/profile" class="btn btn-danger form-btn">CANCEL </a>
                         </div>
                     </div>
                 </div>

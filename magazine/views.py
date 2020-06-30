@@ -4,7 +4,7 @@ from .models import mode,Editor,Profile,Comment
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm,UpdateArticleForm,CommentForm
+from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm,CommentForm,UpdateArticleForm
 from .email import send_welcome_mail
 from tinymce.models import HTMLField
 from rest_framework.response import Response
@@ -87,29 +87,6 @@ def index(request):
         articles = paginator.page(paginator.num_pages)
     return render(request,'index.html',{'page':page,'articles':articles})
 
-
-def article(request, article_id):
-    post = mode.objects.get(id = article_id)
-    template_name = 'article/article.html'
-    # post = get_object_or_404(mode,id = article_id)
-    comments = post.comments.filter(active=True)
-    new_comment = None
-
-    if request.method == 'POST':
-        form = CommentForm(data=request.POST)
-        if form.is_valid():
-
-            new_comment = form.save(commit=False)
-            new_comment.post = post
-            new_comment.save()
-    else:
-        form = CommentForm()
-
-    return render(request, template_name, {'post': post,
-                                           'comments': comments,
-                                           'new_comment': new_comment,
-                                           'form': form})
-
 def search_results(request):
     if 'q' in request.GET and request.GET['q']:
         search_term = request.GET.get('q')
@@ -136,18 +113,37 @@ def new_article(request):
         form = NewArticleForm()
     return render(request, 'article/new_article.html', {"form": form})
 
+def article(request, article_id):
+    post = mode.objects.get(id = article_id)
+    template_name = 'article/article.html'
+    # post = get_object_or_404(mode,id = article_id)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+
+    if request.method == 'POST':
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+    else:
+        form = CommentForm()
+
+    return render(request, template_name, {'post': post, 'comments': comments,'new_comment': new_comment,'form': form})
+
+def filter_by_editor(request):
+    articles = mode.editor.objects.get.all()
+    return render(request,'articles/sort.html',{'articles':articles})
+
 @login_required(login_url='/accounts/login/')
 def update_article(request,article_id):
-    instance = mode.objects.get(id = article_id)
-    if request.method == 'POST':
-        form = UpdateArticleForm(request.POST, request.FILES,instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    else:
-        form = UpdateArticleForm(instance=instance)
+    instance = get_object_or_404(mode,id=article_id)
+    form = UpdateArticleForm(request.POST or None,request.FILES or None, instance = instance)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
     return render(request,'article/update.html',{'form':form})
-
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
