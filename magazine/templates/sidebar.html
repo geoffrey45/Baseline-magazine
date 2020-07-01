@@ -1,5 +1,5 @@
-<div class="col col-md-12">
-
+{% block content %}
+<div class="">
         <div class="card my-4">
           <h5 class="card-header">Search</h5>
           <div class="card-body">
@@ -7,7 +7,7 @@
 				<div class="input-group">
               		<input type="text" name="q" class="form-control" placeholder="Search for...">
               		<span class="input-group-append">
-                <button class="btn btn-secondary" type="submit">Go!</button>
+                <button class="btn btn-primary" type="submit">Go!</button>
               </span>
             </div>
 			</form>
@@ -17,35 +17,14 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Top writers</h5>
+          <h5 class="card-header">Sort by:</h5>
           <div class="card-body">
             <div class="row">
               <div class="">
                 <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Mia cwilv</a>
-                  </li>
-                  <li>
-                    <a href="#">Coco cwilv</a>
-                  </li>
-                  <li>
-                    <a href="#">Miha cwilv</a>
-                  </li>
+					<a href="{% url "all_editors" %}">Editors</a>
                 </ul>
-              </div>
-              <div class="">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">My drug dealer</a>
-                  </li>
-                  <li>
-                    <a href="#">Miss honey</a>
-                  </li>
-                  <li>
-                    <a href="#">Huan huan</a>
-                  </li>
-                </ul>
-              </div>
+                </div>
             </div>
           </div>
 		</div>
@@ -55,34 +34,11 @@
 			  <div class="row">
 				<div class="">
 				  <ul class="list-unstyled mb-0">
-					<li>
-					  <a href="#">How To's</a>
-					</li>
-					<li>
-					  <a href="#">DIY</a>
-					</li>
-					<li>
-					  <a href="#">Hacks</a>
-					</li>
-				  </ul>
-				</div>
-				<div class="">
-				  <ul class="list-unstyled mb-0">
-					<li>
-					  <a href="#">Programming</a>
-					</li>
-					<li>
-					  <a href="#">Sporting</a>
-					</li>
-					<li>
-					  <a href="#">Robbing</a>
-					</li>
+					<!-- some content should go here -->
 				  </ul>
 				</div>
 			  </div>
 			</div>
 		  </div>
-
+{% endblock %}
 </div>
-		  <!-- Search Widget -->
-

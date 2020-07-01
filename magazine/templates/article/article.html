@@ -6,17 +6,18 @@
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
         <div style="background-image: url('{{post.article_image.url}}'); background-position: center; background-size: cover; height: 300px;"></div>
-        <p class=" text-muted">{{ post.editor }} | {{ post.pub_date }}</p>
+        <p class=" text-muted">{{ post.editor }} | {{ post.created_on }}</p>
         <p class="card-text ">{{ post.post | safe }}</p>
       </div>
+      {% if post.editor == request.user %}
+      <a style="margin-bottom: 20px;" href="{% url "update_article" post.slug %}" class="btn btn-secondary">Update</a>
+    {% endif %}
     </div>
 
     <div class="col-md-12 card mb-4  mt-3 ">
       <div class="card-body">
       
-      {% if post.editor == request.user %}
-        <a href="/update/{{post.id}}" class="btn btn-secondary">Update</a>
-      {% endif %}
+     
         
         <!-- comments -->
         <h2>{{ comments.count }} comments</h2>

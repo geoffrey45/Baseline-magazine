@@ -3,8 +3,8 @@ from .models import Editor,Article,tags,magazineApiModel,Profile,Comment
 
 class ArticleAdmin(admin.ModelAdmin):
 	filter_horizontal = ('tag',)
-	list_display = ('title','pub_date','status')
-	list_filter = ('status',)
+	list_display = ('title','created_on')
+	# list_filter = ('status',)
 	search_fields = ['title']
  
 class CommentAdmin(admin.ModelAdmin):

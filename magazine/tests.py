@@ -15,7 +15,7 @@ class EditorTestClass(TestCase):
 
 class ArticleTestCase(TestCase):
 	def setUp(self):
-		self.cwilv = Article(title = 'Nature of Beauty',post = 'I will talk about the legendary beauty',editor='cwilv',pub_date='23-07-2020')
+		self.cwilv = Article(title = 'Nature of Beauty',post = 'I will talk about the legendary beauty',editor='cwilv',created_on='23-07-2020')
 	def test_instance(self):
 		self.assertTrue(isinstance(self.cwilv,Article))
 	def test_save_method(self):

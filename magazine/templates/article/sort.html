@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Articles by {{username.editor}}</title>
+<div class="">
+	{% if articles %}
+  <h1 class="text-center btn btn-primary disabled btn-block" style="margin-top: 20px;">{{username.editor}} has {{articles|length}} published articles</h1>
+  {% else %}
+  <h1 class="text-center btn btn-primary disabled btn-block" style="margin-top: 20px;">No published articles</h1>
+  
+	{% endif %}
+</div>
+{% for article in articles %}
+        <!-- Blog Post -->
+        <div class="card mb-4">
+			<div style="height: 300px; background-image: url('{{article.article_image.url}}'); background-size: cover; background-position: center;"></div>
+          <div class="card-body">
+            <h2 class="card-title">{{article.title}}</h2>
+            <p class="card-text">{{article.post |truncatechars:150 |safe}}</p>
+            <a href="{% url "article" article.id %}" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{article.created_on}} by
+            <a href="#">{{article.editor}}</a>
+          </div>
+		</div>
+    {% endfor %}
+{% endblock %}

@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container">
 	{% if articles %}
-	<h2 class="text-center">Found {{articles|length}} results for query '{{message}}'</h2>
+	<h2 class="text-center">Found {{articles|length}} results for query '{{search_term}}'</h2>
 	{% endif %}
 </div>
 {% for article in articles %}
@@ -18,10 +18,10 @@
   <div class="card-body">
 	<h2 class="card-title">{{article.title}}</h2>
 	<p class="card-text">{{article.post | safe}}</p>
-	<a href="{% url "article" article.id %}" class="btn btn-primary">Read More &rarr;</a>
+	<a href="{% url "article" article.slug %}" class="btn btn-primary">Read More &rarr;</a>
   </div>
   <div class="card-footer text-muted">
-	Posted on {{article.pub_date}} by
+	Posted on {{article.created_on}} by
 	<a href="#">{{article.editor}}</a>
   </div>
 </div>
@@ -29,11 +29,5 @@
 <div class="div">
 	<h2 class="text-center text-primary" >Oops.There is nothing here</h2>
 </div>
-{% endfor %}
-{% endblock %}
-
-{% block scripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-{% bootstrap_javascript %}
-
+{% endfor %}    
 {% endblock %}

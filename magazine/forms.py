@@ -3,11 +3,12 @@ from .views import mode
 from .models import Profile,Comment
 from django.contrib.auth.models import User 
 from django.contrib.auth.forms import UserCreationForm 
+from tinymce.models import HTMLField
 
 class NewArticleForm(forms.ModelForm):
     class Meta:
         model = mode
-        exclude = ['editor', 'pub_date']
+        exclude = ['editor', 'created_on','slug']
         widgets = {
             'tag': forms.CheckboxSelectMultiple(),
         }
@@ -35,10 +36,3 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('name','email','body')
         
-class UpdateArticleForm(forms.ModelForm):
-    class Meta:
-        model = mode
-        exclude = ('editor','pub_date')
-        widgets = {
-            'tag':forms.CheckboxSelectMultiple(),
-        }

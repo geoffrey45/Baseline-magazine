@@ -12,19 +12,37 @@
 </head>
 <body>
 	{% include 'navbar.html' %}
-	<div class="row" style="width: 100%;">
-		<div class="col col-md-7.5" style="margin-left: 20px;">
+	<div class="row page-container" style="width: 100%; margin-bottom: 20px; margin-left: 0px;">
+		<div class="col col-md-8 main card" style="margin-left: 20px; margin-top: 25px;">
 		{% block content %} {% endblock %}
 		</div>
-		<div class="col col-md-4" style="margin-left: 0;">
+		<div class="col col-md-3.7 sidebar">
 		{% include 'sidebar.html' %}
+		
 		</div>
 	</div>
-	
-	
-	{% block scripts %}
+		
+	</div>	
+		<style>
+			 .sidebar{
+				 margin-left: 0;
+			 }
+			@media (max-width:700px){
+				 .row{
+					 width: 95% !important;
+					 display: list-item;
+					 list-style-type: none;
+				 }
+				 .sidebar{
+					 margin-left: 20px;
+				 }	 
+			}
+			
+		</style>
+		
+			{% block scripts %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	{% bootstrap_javascript %}
-	{% endblock %}{% include 'footer.html' %}
+	{% endblock %}
 </body>
 </html>

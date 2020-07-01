@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
-from .models import mode,Editor,Profile,Comment
+from .models import mode,Editor,Profile,Comment,tags,magazineApiModel
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm,CommentForm,UpdateArticleForm
+from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from .email import send_welcome_mail
 from tinymce.models import HTMLField
 from rest_framework.response import Response
@@ -75,8 +75,7 @@ class apiDescription(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
         
 def index(request):
-    date = dt.date.today()
-    articles = mode.all_articles()
+    articles = mode.all_articles().order_by('-created_on')
     paginator = Paginator(articles,3)
     page = request.GET.get('page')
     try:
@@ -91,9 +90,8 @@ def search_results(request):
     if 'q' in request.GET and request.GET['q']:
         search_term = request.GET.get('q')
         articles = mode.search(search_term)
-        message = f'{search_term}'
 
-        return render(request,'article/search.html',{'message':message,'articles':articles})
+        return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
     else:
         message = 'Why? Just why!'
         return render(request,'article/search.html',{'message':message})
@@ -103,7 +101,7 @@ def new_article(request):
     current_user = request.user
     if request.method == 'POST':
         form = NewArticleForm(request.POST, request.FILES)
-        if form.is_valid(): 
+        if form.is_valid():
             article = form.save(commit=False)
             article.editor = current_user
             article.save()
@@ -113,8 +111,8 @@ def new_article(request):
         form = NewArticleForm()
     return render(request, 'article/new_article.html', {"form": form})
 
-def article(request, article_id):
-    post = mode.objects.get(id = article_id)
+def article(request, slug):
+    post = mode.objects.get(slug = slug)
     template_name = 'article/article.html'
     # post = get_object_or_404(mode,id = article_id)
     comments = post.comments.filter(active=True)
@@ -132,14 +130,19 @@ def article(request, article_id):
 
     return render(request, template_name, {'post': post, 'comments': comments,'new_comment': new_comment,'form': form})
 
-def filter_by_editor(request):
-    articles = mode.editor.objects.get.all()
-    return render(request,'articles/sort.html',{'articles':articles})
+def filter_by_editor(request,username):
+    articles = mode.objects.filter(editor__username=username).order_by('-created_on')
+    username = mode.objects.filter(editor__username=username).order_by('-created_on').first()
+    return render(request,'article/sort.html',{'articles':articles,'username':username})
+
+def all_editors(request):
+    editors = Profile.all_editors()
+    return render(request,'article/all.html',{'editors':editors})
 
 @login_required(login_url='/accounts/login/')
-def update_article(request,article_id):
-    instance = get_object_or_404(mode,id=article_id)
-    form = UpdateArticleForm(request.POST or None,request.FILES or None, instance = instance)
+def update_article(request,slug):
+    instance = get_object_or_404(mode,slug=slug)
+    form = NewArticleForm(request.POST or None,request.FILES or None, instance = instance)
     if form.is_valid():
         form.save()
         return redirect('index')
