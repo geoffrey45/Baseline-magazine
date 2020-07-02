@@ -149,7 +149,8 @@ def update_article(request,slug):
     return render(request,'article/update.html',{'form':form})
 
 @login_required(login_url='/accounts/login/')
-def update_profile(request):
+def update_profile(request,username):
+    username = request.user.username
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST,instance=request.user)
         profile_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
@@ -168,5 +169,8 @@ def update_profile(request):
     return render(request,'profile/update.html',context)
 
 @login_required(login_url='/accounts/login/')
-def profile(request):
-    return render(request,'profile/profile.html')
+def profile(request,username):
+    user = request.user
+    username = user.username
+    current_user_articles = mode.objects.filter(editor__username=user).order_by('-created_on')
+    return render(request,'profile/profile.html',{'current_user_articles':current_user_articles,'user':user})

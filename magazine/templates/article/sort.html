@@ -15,12 +15,12 @@
 			<div style="height: 300px; background-image: url('{{article.article_image.url}}'); background-size: cover; background-position: center;"></div>
           <div class="card-body">
             <h2 class="card-title">{{article.title}}</h2>
-            <p class="card-text">{{article.post |truncatechars:150 |safe}}</p>
-            <a href="{% url "article" article.id %}" class="btn btn-primary">Read More &rarr;</a>
+            <p class="card-text">{{article.post |truncatechars_html:150 |safe}}</p>
+            <a href="{% url "article" article.slug %}" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
             Posted on {{article.created_on}} by
-            <a href="#">{{article.editor}}</a>
+           <span class="text-primary">{{article.editor}}</span>
           </div>
 		</div>
     {% endfor %}

@@ -4,6 +4,7 @@
 {% block styles %}
 {% bootstrap_css %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 {% endblock %}
 
 {% block content %}
@@ -13,7 +14,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profile</title>
+    <title>{{user.username}}'s Profile'</title>
 </head>
 
 <body>
@@ -22,20 +23,37 @@
             <div class="row">
                 <div class="col-md-12" style="margin-top: 40px;">
                     <div class="profile-card">
-                        <div class="profile-back" style="background-color: rgb(4, 18, 26);"></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image.url}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
-                        <h3 class="profile-name" style="background-color: rgb(4, 18, 26);">{{user.username}}</h3>
-                        <p class="profile-bio">{{user.profile.bio}}</p>
+                        <div class="profile-back bg-primary" ></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image.url}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                        <h3 class="profile-name bg-primary">{{user.username}}</h3>
+                        <p class="profile-bio">
+                        {% if user.profile.bio %}
+                            {{user.profile.bio}} 
+                        {% else %}
+                            You have no bio
+                        {% endif %}
+                             </p>
                         <ul class="social-list">
-                            <li>Location: <strong>{{user.profile.location}}</strong></li>
+                            <li>Location: <strong> 
+                            {% if user.profile.location %}
+                                {{user.profile.location}}
+                            {% else %}
+                                Not updated
+                            {% endif %}
+                                </strong></li>
                             <li>Email: <strong>{{user.email}}</strong></li>
-                            <li>Born on:<strong>{{user.profile.birth_date}}</strong></li>
+                            <li>Born on:<strong>
+                            {% if user.profile.birth_date %}
+                                {user.profile.birth_date}}
+                                <i class="fas fa-cloud"></i>
+                            {% else %}
+                                Not updated
+                            {% endif %}
+                                </strong></li>
                         </ul>
-                    </div><a class="btn btn-light btn-sm border rounded-0 switchhover1" role="button" href="/profile/update/">Update</a></div>
+                    </div><a class="btn btn-light bg-primary btn-sm rounded-0 switchhover1" role="button" href="{% url  "update_profile" user.username %}">Update</a></div>
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

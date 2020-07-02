@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'crispy_forms',
     'widget_tweaks',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,4 @@ REST_FRAMEWORK = {
     )
 }
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'

@@ -14,8 +14,8 @@ urlpatterns=[
  	path('search/',search_results,name='search_results'),
 	path('api/model/',magazineList.as_view()),
 	path('api/model/item/<pk>',apiDescription.as_view()),
-	path('profile/update/',update_profile,name='update_profile'),
-	path('profile/',profile,name='profile'),
+ 	path('profile/<username>',profile,name='profile'),
+	path('profile/<username>/update/',update_profile,name='update_profile'),
  	path('editor/',all_editors,name='all_editors'),
 	path('editor/<username>/',filter_by_editor,name='filter_by_editor'),
 ]

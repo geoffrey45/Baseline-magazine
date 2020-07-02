@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 {% load bootstrap4 %}
+<title>{{post.title}}</title>
 <div class="container">
   <div class="row" style="margin-top: 9px;">
     <div class="col-md-12 card mb-4  mt-3 left  top" >
@@ -10,7 +11,7 @@
         <p class="card-text ">{{ post.post | safe }}</p>
       </div>
       {% if post.editor == request.user %}
-      <a style="margin-bottom: 20px;" href="{% url "update_article" post.slug %}" class="btn btn-secondary">Update</a>
+      <a style="margin-bottom: 20px;" href="{% url "update_article" post.slug %}" class="btn btn-primary">Update</a>
     {% endif %}
     </div>
 
@@ -51,4 +52,10 @@
     </div>
   </div>
 </div>
+<style>
+.post-img{
+  width: 200px !important;
+  height: auto !important;
+}
+</style>
 {% endblock content %}

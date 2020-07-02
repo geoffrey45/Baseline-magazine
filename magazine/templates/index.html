@@ -2,15 +2,17 @@
 {% block content %}
 
   <div class="" style="margin-top: 25px;">
-        <h1 class="my-4">Hello 
-          <small>{{request.user.username}}</small>
-        </h1>
 		{% for article in articles %}
     <div class="card mb-4">
       <div style="height: 300px; width: auto; background-image: url('{{article.article_image.url}}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
     <div class="card-body">
       <h2 class="card-title">{{article.title}}</h2>
-      <p class="card-text">{{article.post |safe}}</p>
+      <p class="card-text">
+        
+        {% autoescape on %}
+          {{article.post |truncatechars_html:150 |safe}}
+        {% endautoescape %}
+        </p>
       <a href="{%url "article" article.slug %}" class="btn btn-primary">Read More &rarr;</a>
     </div>
     <div class="card-footer text-muted">
@@ -39,6 +41,5 @@
 			{% endif %}  
         </ul>
 		{% endif %}        
-
     </div>
 {% endblock %}

@@ -13,8 +13,17 @@
 			</form>
             
           </div>
-        </div>
-
+		</div>
+		{% if user.is_authenticated %}
+		<div class="card my-4">
+			<h5 class="card-header">Hello {{user.username}}</h5>
+			<div class="card-body">
+			<a style="border-radius: 0;" href="{% url "profile" user.username%}" class="btn btn-primary">Profile</a>
+			<a style="border-radius: 0;" href="{% url "filter_by_editor" user.username%}" class="btn btn-primary">View all your articles</a>
+			<a style="border-radius: 0;" href="/logout" class="btn btn-primary">Logout</a>
+			</div>
+		  </div>
+		{% endif %}
         <!-- Categories Widget -->
         <div class="card my-4">
           <h5 class="card-header">Sort by:</h5>
@@ -28,17 +37,35 @@
             </div>
           </div>
 		</div>
-		<div class="card my-4">
-			<h5 class="card-header">Categories</h5>
+		
+		{% if current_user_articles %}
+			<div class="card my-4">
+				<h5 class="card-header">
+			{% if current_user_articles %}
+				Your articles
+			{% else %}
+			Put some here pls
+			{% endif %}
+			</h5>
+			
 			<div class="card-body">
+				<div class="card-subtitle sm text-muted" style="font-size: small;">You have {{current_user_articles|length}} published articles</div>
 			  <div class="row">
 				<div class="">
-				  <ul class="list-unstyled mb-0">
-					<!-- some content should go here -->
+				  <ul class="mb-0" style="list-style-type: none;">
+					{% for article in  current_user_articles%}
+					<li>
+						<a href="{% url "update_article" article.slug %}"><span><i class="fa fa-edit"></i></span></a>
+						
+						<a href="{% url "article" article.slug %}">{{article.title}}</a>
+					</li>
+					{% endfor %}
 				  </ul>
 				</div>
 			  </div>
 			</div>
-		  </div>
+		</div>
+		{% endif %}
+		
 {% endblock %}
 </div>
