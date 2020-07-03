@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm 
 from tinymce.models import HTMLField
 from django_summernote.widgets import SummernoteInplaceWidget, SummernoteWidget
+
 class NewArticleForm(forms.ModelForm):
     class Meta:
         model = mode
@@ -18,7 +19,7 @@ class NewArticleForm(forms.ModelForm):
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2',)    
+        fields = ('username','email', 'password1', 'password2',)    
          
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(max_length=200)

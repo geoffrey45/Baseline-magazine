@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
-from .models import mode,Editor,Profile,Comment,tags,magazineApiModel
+from .models import mode,Editor,Profile,Comment,magazineApiModel
 import datetime as dt
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
@@ -28,6 +28,11 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
+            
+            name = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            send_welcome_mail(name,email)
+            
             return redirect('index')
     else:
         form = SignUpForm()
@@ -97,8 +102,9 @@ def search_results(request):
         return render(request,'article/search.html',{'message':message})
 
 @login_required(login_url='/accounts/login/')
-def new_article(request):
+def new_article(request,username):
     current_user = request.user
+    username = current_user
     if request.method == 'POST':
         form = NewArticleForm(request.POST, request.FILES)
         if form.is_valid():
@@ -172,5 +178,4 @@ def update_profile(request,username):
 def profile(request,username):
     user = request.user
     username = user.username
-    current_user_articles = mode.objects.filter(editor__username=user).order_by('-created_on')
-    return render(request,'profile/profile.html',{'current_user_articles':current_user_articles,'user':user})
+    return render(request,'profile/profile.html',{'user':user})

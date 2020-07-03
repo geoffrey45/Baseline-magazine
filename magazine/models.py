@@ -51,10 +51,10 @@ class Editor(models.Model):
         self.save()
     
 
-class tags(models.Model):
-	name = models.CharField(max_length = 30)
-	def __str__(self):
-		return self.name
+# class tags(models.Model):
+# 	name = models.CharField(max_length = 30)
+# 	def __str__(self):
+# 		return self.name
 
 
 # STATUS = (
@@ -67,7 +67,7 @@ class Article(models.Model):
     # status = models.IntegerField(choices=STATUS, default=0)
     post = models.TextField(default='')
     editor = models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
-    tag = models.ManyToManyField(tags,blank=True)
+    # tag = models.ManyToManyField(tags,blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     article_image = models.ImageField(upload_to='articles/', blank=True)
     photo_credits = models.CharField(max_length=60,default='unsplash.com')

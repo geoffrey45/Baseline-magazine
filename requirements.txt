@@ -12,6 +12,7 @@ django-crispy-forms==1.9.1
 django-heroku==0.3.1
 django-mail-templated==2.6.5
 django-registration==2.4.1
+django-summernote==0.8.11.6
 django-tinymce==3.0.2
 django-welcome==0.3.0
 django-widget-tweaks==1.4.8
