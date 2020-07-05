@@ -3,7 +3,6 @@ from .views import mode
 from .models import Profile,Comment
 from django.contrib.auth.models import User 
 from django.contrib.auth.forms import UserCreationForm 
-from tinymce.models import HTMLField
 from django_summernote.widgets import SummernoteInplaceWidget, SummernoteWidget
 
 class NewArticleForm(forms.ModelForm):
@@ -11,9 +10,7 @@ class NewArticleForm(forms.ModelForm):
         model = mode
         exclude = ['editor', 'created_on','slug']
         widgets = {
-            'tag': forms.CheckboxSelectMultiple(),
             'post': SummernoteWidget(),
-            
         }
         
 class SignUpForm(UserCreationForm):
@@ -37,5 +34,5 @@ class ProfileUpdateForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name','email','body')
+        fields = ('email','body')
         

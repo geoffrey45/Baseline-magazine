@@ -6,7 +6,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from .forms import NewArticleForm, SignUpForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from .email import send_welcome_mail
-from tinymce.models import HTMLField
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import apiSerializer
@@ -29,9 +28,9 @@ def signup(request):
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
             
-            name = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            send_welcome_mail(name,email)
+            # name = form.cleaned_data['username']
+            # email = form.cleaned_data['email']
+            # send_welcome_mail(name,email)
             
             return redirect('index')
     else:
@@ -94,7 +93,7 @@ def index(request):
 def search_results(request):
     if 'q' in request.GET and request.GET['q']:
         search_term = request.GET.get('q')
-        articles = mode.search(search_term)
+        articles = mode.search(search_term).order_by('-created_on')
 
         return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
     else:
@@ -154,6 +153,12 @@ def update_article(request,slug):
         return redirect('index')
     return render(request,'article/update.html',{'form':form})
 
+@login_required(login_url='/accounts/login')
+def delete_article(request,slug):
+    instance = get_object_or_404(mode,slug=slug)
+    instance.delete()
+    return redirect('/')
+
 @login_required(login_url='/accounts/login/')
 def update_profile(request,username):
     username = request.user.username
@@ -163,7 +168,7 @@ def update_profile(request,username):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('profile')
+            return redirect('index')
     else:
         user_form=UserUpdateForm(instance=request.user)
         profile_form=ProfileUpdateForm(instance=request.user.profile)
@@ -173,6 +178,12 @@ def update_profile(request,username):
         }
 
     return render(request,'profile/update.html',context)
+
+@login_required(login_url='/accounts/login')
+def delete_user(request,pk):
+    instance = request.user
+    instance.delete()
+    return redirect('/')
 
 @login_required(login_url='/accounts/login/')
 def profile(request,username):

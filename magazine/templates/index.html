@@ -1,45 +1,59 @@
 {% extends 'base.html' %}
 {% block content %}
+<title>Home-Baseline Magazine</title>
 
-  <div class="" style="margin-top: 25px;">
-		{% for article in articles %}
-    <div class="card mb-4">
-      <div style="height: 300px; width: auto; background-image: url('{{article.article_image.url}}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
-    <div class="card-body">
-      <h2 class="card-title">{{article.title}}</h2>
-      <p class="card-text">
-        
-        {% autoescape on %}
-          {{article.post |truncatechars_html:150 |safe}}
-        {% endautoescape %}
-        </p>
-      <a href="{%url "article" article.slug %}" class="btn btn-primary">Read More &rarr;</a>
-    </div>
-    <div class="card-footer text-muted">
-      Posted on {{article.created_on}}by
-      <a href="{% url "filter_by_editor" article.editor %}">{{article.editor}}</a>
-    </div>
+{% if articles %}
+<div class="" style="margin-top: 25px;">
+  {% for article in articles %}
+  <div class="card mb-4">
+    <div style="height: 300px; width: auto; background-image: url('{{article.article_image}}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+  <div class="card-body">
+    <h2 class="card-title">{{article.title}}</h2>
+    <p class="card-text">
+      
+      {% autoescape on %}
+        {{article.post |truncatechars_html:150 |safe}}
+      {% endautoescape %}
+      </p>
+    <a href="{%url "article" article.slug %}" class="btn btn-primary">Read More &rarr;</a>
   </div>
-    {% endfor %}
+  <div class="card-footer text-muted">
+    Posted on {{article.created_on}}by
+    <a href="{% url "filter_by_editor" article.editor %}">{{article.editor}}</a>
+  </div>
+</div>
+  {% endfor %}
+  
+  <!-- Pagination -->
+  
+  {% if articles.has_other_pages %}
+  <ul class="pagination justify-content-center mb-4">
+    {% if articles.has_previous %}
+    <li class="page-item">
+            <a class="page-link" href="?page={{ articles.previous_page_number }}">&larr; Newer</a>
+          </li>
+    {% endif %}
+    <li class="page-item disabled">
+            <a class="page-link disabled" href="">{{ articles.number}} of {{articles.paginator.num_pages}}</a>
+          </li>
+    {% if articles.has_next %}
+    <li class="page-item">
+            <a class="page-link" href="?page={{ articles.next_page_number }}">Older &rarr;</a>
+          </li>
+    {% endif %}  
+      </ul>
+  {% endif %}        
+  </div>
+{% else %}
+<h1 class="text-center btn btn-primary disabled btn-block" style="margin-top: 20px; border-radius: 0;">No published articles 
+  
+  {% if user.is_authenticated %}
+    <span><a style="color: white; text-decoration: underline;" href="{% url "new_article" user.username %}">create</a></span></h1>
+  {% else %}
+  <span><a style="color: white; text-decoration: underline;" href="accounts/login/">login </a></span>to create</h1>
+  {% endif %}
     
-    <!-- Pagination -->
-    
-		{% if articles.has_other_pages %}
-		<ul class="pagination justify-content-center mb-4">
-			{% if articles.has_previous %}
-			<li class="page-item">
-            	<a class="page-link" href="?page={{ articles.previous_page_number }}">&larr; Newer</a>
-          	</li>
-			{% endif %}
-			<li class="page-item disabled">
-            	<a class="page-link disabled" href="">{{ articles.number}} of {{articles.paginator.num_pages}}</a>
-          	</li>
-			{% if articles.has_next %}
-			<li class="page-item">
-            	<a class="page-link" href="?page={{ articles.next_page_number }}">Older &rarr;</a>
-          	</li>
-			{% endif %}  
-        </ul>
-		{% endif %}        
-    </div>
+{% endif %}
+  
+  
 {% endblock %}

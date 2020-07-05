@@ -1,13 +1,13 @@
-{% extends 'registration/base.html'%}
+{% extends 'base.html'%}
 
 {% load bootstrap4 %}
 {% block content %}
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<div class="panel panel-default">
+			<div class="panel panel-default card" style="width: 50%; padding: 20px; position: relative; left: 25%; margin: 20px;">
 				<div class="panel-heading">
-				   <h3 class="  signin text-center">Sign In</h3>
+				   <h3 class="  text-primary text-center">Sign In</h3>
 				</div>
 				<div class="panel-body">
 					<form action="/accounts/login/" method="post">
@@ -15,8 +15,8 @@
 					{% bootstrap_form form %}
 
 					<div class="form-group">
-						<input class=" login btn btn-primary btn-sm text-center" type="submit" value="Login">
-						<p>No account? <a href="/signup/">Signup here</a> <a style="float: right;" href="/">Home</a></p>
+						<input class=" login btn btn-primary btn-sm text-center" style="border-radius: 0;" type="submit" value="Login">
+						<p>No account? <a href="/signup/">Signup here</a></p>
 						
 					</div>
 					<input type="hidden" name="next" value={{next}}>
@@ -27,86 +27,7 @@
 		</div>
 	</div>
 </div>
-
 <style>
-	.panel{
-		background-color: rgba(255, 255, 255, 0.774);
-		border: 2px solid rgba(255, 255, 255, 0);
-		border-radius: 0px;
-		width: 100%;
-		position: relative;
-		top: 20%;
-		box-shadow: 0px 0px 10px 0px black;
-	}
-	input.form-control{
-		background-color: transparent !important;
-	}
-	form{
-		padding: 20px;
-		outline:0px !important;
-    	-webkit-appearance:none;
-    	box-shadow: none !important;
-	}
-	.signin{
-		margin-top: 20px;
-		text-decoration: none;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		color:teal
-	}
-	#id_password, #id_username{
-		border: none;
-		border-radius: 0;
-		border-bottom: 1px solid black;
-		text-decoration: none;
-		color: rgb(0, 53, 33);
-		line-height: 100%;
-		caret-color: rgb(0, 0, 0);
-	}
-	.login{
-		border-radius: 0;
-		position: relative;
-		left: 40%;
-		width: 20%;
-		margin-top: 4%;
-	}
-	textarea:hover, 
-input:hover, 
-textarea:active, 
-textarea:focus, 
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active
-{
-    outline:0px !important;
-    -webkit-appearance:none;
-	box-shadow: none !important;
-	background-color: transparent !important;
-}
-	body{
-	background-image: url('https://images.unsplash.com/photo-1541332246502-2e99eaa96cc1?ixlib=rb-1.2.1&w=1000&q=80');
-	background-repeat: repeat-y !important;
-	background-size:cover !important;
-	width: 100% !important;
-	height: 100% !important;
-}
-
-@media (min-width: 700px) { 
-	.panel{
-		position: relative;
-		width: 50%;
-		left: 25%;
-		top: 30%;
-	}
-	.signin{
-		margin-top: 10%;
-	}
-	.login{
-		margin-bottom: 10%;
-	}
- }
+	 
 </style>
 {% endblock %}

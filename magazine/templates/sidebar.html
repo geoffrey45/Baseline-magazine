@@ -36,7 +36,7 @@
 				  {% for article in  current_user_articles%}
 				  <li>
 					  <a href="{% url "update_article" article.slug %}"><span><i class="fa fa-edit"></i></span></a>
-					  
+					  <a href="{% url "delete_article" article.slug %}"><span><i class="fa fa-trash"></i></span></a>
 					  <a href="{% url "article" article.slug %}">{{article.title}}</a>
 				  </li>
 				  {% endfor %}
@@ -76,7 +76,25 @@
           </div>
 		</div>
 		
+		{% if user.is_authenticated %}
+			<div class="card my-4">
+			<h5 class="card-header">Account Actions</h5>
+			<div class="card-body">
+			  <div class="row">
+				<div class="">
+				  <div class="">
+					<a style="margin-left: 15px; border-radius: 0;" class="btn btn-primary" href="{% url "update_profile" user.username %}">Update profile</a>
+					<a style="margin-left: 15px; border-radius: 0;" class="btn btn-primary" href="{% url "delete_user" user.username %}">delete account</a>
+				  </div>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		
 
+		{% endif %}
+			
+		
 		
 {% endblock %}
 </div>

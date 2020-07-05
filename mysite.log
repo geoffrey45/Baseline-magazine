@@ -1,0 +1,550 @@
+[04/Jul/2020 17:20:09] INFO [django.utils.autoreload:578] Watching for file changes with StatReloader
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:267] Waiting for apps ready_event.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:273] Apps ready_event triggered. Sending autoreload_started signal.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline (copy)/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/admin/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/auth/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/contenttypes/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/sessions/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/messages/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline (copy)/magazine/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/bootstrap4/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/tinymce/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/welcome/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/rest_framework/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/rest_framework/authtoken/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/crispy_forms/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/widget_tweaks/locale with glob **/*.mo.
+[04/Jul/2020 17:20:09] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django_summernote/locale with glob **/*.mo.
+[04/Jul/2020 17:20:19] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:19] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:26] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:26] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:28] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:28] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:29] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:29] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:30] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:30] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:33] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:33] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:39] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:39] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:44] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:44] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:44] WARNING [django.request:228] Not Found: /favicon.ico
+[04/Jul/2020 17:20:44] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 1001
+[04/Jul/2020 17:20:50] INFO [django.utils.autoreload:578] Watching for file changes with StatReloader
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:267] Waiting for apps ready_event.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:273] Apps ready_event triggered. Sending autoreload_started signal.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline (copy)/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/admin/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/auth/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/contenttypes/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/sessions/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/messages/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline (copy)/magazine/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/bootstrap4/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/tinymce/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/welcome/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/rest_framework/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/rest_framework/authtoken/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/crispy_forms/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/widget_tweaks/locale with glob **/*.mo.
+[04/Jul/2020 17:20:50] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django_summernote/locale with glob **/*.mo.
+[04/Jul/2020 17:20:53] ERROR [django.request:228] Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cwilv/Documents/Django/Baseline (copy)/magazine/views.py", line 99, in search_results
+    return render(request,'article/search.html',{'search_term':search_term,'articles':articles})
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/storage.py", line 420, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/card.css'
+[04/Jul/2020 17:20:53] ERROR [django.server:154] "GET /search/?q=a HTTP/1.1" 500 27
+[04/Jul/2020 17:20:56] INFO [django.server:154] "GET / HTTP/1.1" 200 9380
+[04/Jul/2020 17:20:57] WARNING [django.request:228] Not Found: /articles/nEWGCi7gB8U_Regular.jpg
+[04/Jul/2020 17:20:57] WARNING [django.server:154] "GET /articles/nEWGCi7gB8U_Regular.jpg HTTP/1.1" 404 1001
+[04/Jul/2020 17:20:57] WARNING [django.request:228] Not Found: /articles/41SKIzYcFh0_Regular.jpg
+[04/Jul/2020 17:20:57] WARNING [django.server:154] "GET /articles/41SKIzYcFh0_Regular.jpg HTTP/1.1" 404 1001
+[04/Jul/2020 17:21:32] DEBUG [django.utils.autoreload:341] File /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py. is_changed: False, is_new: True
+[04/Jul/2020 17:21:32] DEBUG [django.utils.autoreload:342] File /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py previous mtime: None, current mtime: 1593872492.3356817
+[04/Jul/2020 17:21:32] DEBUG [django.utils.autoreload:302] /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py notified as changed. Signal results: [(<function translation_file_changed at 0x7f8461472048>, None)].
+[04/Jul/2020 17:21:32] INFO [django.utils.autoreload:203] /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py changed, reloading.
+[04/Jul/2020 17:21:33] INFO [django.utils.autoreload:578] Watching for file changes with StatReloader
+[04/Jul/2020 17:21:33] DEBUG [django.utils.autoreload:267] Waiting for apps ready_event.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:273] Apps ready_event triggered. Sending autoreload_started signal.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline (copy)/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/admin/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/auth/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/contenttypes/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/sessions/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/messages/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django/contrib/staticfiles/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline (copy)/magazine/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/bootstrap4/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/tinymce/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/welcome/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/rest_framework/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/rest_framework/authtoken/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/crispy_forms/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/widget_tweaks/locale with glob **/*.mo.
+[04/Jul/2020 17:21:34] DEBUG [django.utils.autoreload:226] Watching dir /home/cwilv/Documents/Django/Baseline/virtual/lib/python3.6/site-packages/django_summernote/locale with glob **/*.mo.
+[04/Jul/2020 17:21:38] INFO [django.server:154] "GET / HTTP/1.1" 200 9380
+[04/Jul/2020 17:21:39] WARNING [django.request:228] Not Found: /articles/nEWGCi7gB8U_Regular.jpg
+[04/Jul/2020 17:21:39] WARNING [django.server:154] "GET /articles/nEWGCi7gB8U_Regular.jpg HTTP/1.1" 404 1001
+[04/Jul/2020 17:21:39] WARNING [django.request:228] Not Found: /articles/41SKIzYcFh0_Regular.jpg
+[04/Jul/2020 17:21:39] WARNING [django.server:154] "GET /articles/41SKIzYcFh0_Regular.jpg HTTP/1.1" 404 1001
+[04/Jul/2020 17:21:58] INFO [django.server:154] "GET / HTTP/1.1" 200 9380
+[04/Jul/2020 17:21:58] WARNING [django.request:228] Not Found: /articles/41SKIzYcFh0_Regular.jpg
+[04/Jul/2020 17:21:58] WARNING [django.server:154] "GET /articles/41SKIzYcFh0_Regular.jpg HTTP/1.1" 404 1001
+[04/Jul/2020 17:21:58] WARNING [django.request:228] Not Found: /articles/nEWGCi7gB8U_Regular.jpg
+[04/Jul/2020 17:21:58] WARNING [django.server:154] "GET /articles/nEWGCi7gB8U_Regular.jpg HTTP/1.1" 404 1001
+[04/Jul/2020 17:22:08] DEBUG [django.utils.autoreload:341] File /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py. is_changed: False, is_new: True
+[04/Jul/2020 17:22:08] DEBUG [django.utils.autoreload:342] File /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py previous mtime: None, current mtime: 1593872527.5158677
+[04/Jul/2020 17:22:08] DEBUG [django.utils.autoreload:302] /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py notified as changed. Signal results: [(<function translation_file_changed at 0x7fdb7e648048>, None)].
+[04/Jul/2020 17:22:08] INFO [django.utils.autoreload:203] /home/cwilv/Documents/Django/Baseline (copy)/baseline/settings.py changed, reloading.

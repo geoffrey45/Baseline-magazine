@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-12" style="margin-top: 40px;">
                     <div class="profile-card">
-                        <div class="profile-back bg-primary" ></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image.url}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                        <div class="profile-back bg-primary" ></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image}});background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
                         <h3 class="profile-name bg-primary">{{user.username}}</h3>
                         <p class="profile-bio">
                         {% if user.profile.bio %}
@@ -43,14 +43,16 @@
                             <li>Email: <strong>{{user.email}}</strong></li>
                             <li>Born on:<strong>
                             {% if user.profile.birth_date %}
-                                {user.profile.birth_date}}
-                                <i class="fas fa-cloud"></i>
+                                {{user.profile.birth_date}}
                             {% else %}
                                 Not updated
                             {% endif %}
                                 </strong></li>
                         </ul>
-                    </div><a class="btn btn-light bg-primary btn-sm rounded-0 switchhover1" role="button" href="{% url  "update_profile" user.username %}">Update</a></div>
+                    </div></div>
+
+                    
+                
             </div>
         </div>
     </div>

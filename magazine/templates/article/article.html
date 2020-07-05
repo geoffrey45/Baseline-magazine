@@ -6,7 +6,7 @@
     <div class="col-md-12 card mb-4  mt-3 left  top" >
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-        <div style="background-image: url('{{post.article_image.url}}'); background-position: center; background-size: cover; height: 300px;"></div>
+        <div style="background-image: url('{{post.article_image}}'); background-position: center; background-size: cover; height: 300px;"></div>
         <p class=" text-muted">{{ post.editor }} | {{ post.created_on }}</p>
         <p class="card-text ">{{ post.post | safe }}</p>
       </div>
