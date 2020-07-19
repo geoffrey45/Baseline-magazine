@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load  bootstrap4%}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{user.username}}'s Profile'</title>
+</head>
+
+<body>
+    <div class="wrapper card" style="width: 100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 40px;">
+                    <div class="profile-card">
+                        <div class="profile-back bg-primary" ></div><div class="rounded-circle profile-pic" style="background-image: url({{user.profile.image}});background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                        <h3 class="profile-name bg-primary">{{user.username}}</h3>
+                        <p class="profile-bio">
+                        {% if user.profile.bio %}
+                            {{user.profile.bio}} 
+                        {% else %}
+                            You have no bio
+                        {% endif %}
+                             </p>
+                        <ul class="social-list">
+                            <li>Location: <strong> 
+                            {% if user.profile.location %}
+                                {{user.profile.location}}
+                            {% else %}
+                                Not updated
+                            {% endif %}
+                                </strong></li>
+                            <li>Email: <strong>{{user.email}}</strong></li>
+                            <li>Born on:<strong>
+                            {% if user.profile.birth_date %}
+                                {{user.profile.birth_date}}
+                            {% else %}
+                                Not updated
+                            {% endif %}
+                                </strong></li>
+                        </ul>
+                    </div></div>
+
+                    
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

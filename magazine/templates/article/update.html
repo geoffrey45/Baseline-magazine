@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/update_profile.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+{% endblock %}
+{% block scripts %}
+{% bootstrap_javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+<title>Updating Article</title>
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{form.media}}
+	{% bootstrap_form form %}
+	<button class="btn btn-primary" type="submit">Update</button>
+</form>
+{% endblock %}

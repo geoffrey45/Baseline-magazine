@@ -1,0 +1,148 @@
+{% extends 'profile/base.html' %}
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+
+{% block content %}
+<body>
+    <div class="container profile profile-view">
+        <div class="row">
+            <div class="col-md-12 alert-col relative">
+                <div class="alert alert-info absolue center" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span>Profile save with success</span></div>
+            </div>
+        </div>
+        <form method="POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+            <div class="form-row profile-row">
+                <div class="col-md-4 relative">
+                    <div class="avatar">
+                        <div class="avatar-bg center"></div>
+                    </div>
+                        {% render_field p_form.image class+="form-control" %}
+                    </div>
+                <div class="col-md-8">
+                    <h1>Profile </h1>
+                    <hr>
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Username</label>
+                            {% render_field u_form.username class+="form-control" %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Email</label>
+                            {% render_field u_form.email class+="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Bio</label>
+                        {% render_field p_form.bio class+="form-control" %}
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>location</label>
+                            {% render_field p_form.location class+="form-control" %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Birth date</label>
+                            {% render_field p_form.birth_date class+="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-row">
+                        <div class="col-md-12 content-right">
+                            <button class="btn btn-primary form-btn" type="submit">SAVE </button>
+                            <a href="{% url "profile" user.username %}" class="btn btn-danger form-btn">CANCEL </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<style>
+div.avatar > img {
+  border-radius: 50%;
+}
+
+div.container.profile {
+  padding: 10px 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.no-marging {
+  margin: 0 !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolue {
+  position: absolute;
+}
+
+div.profile-row {
+  margin-top: 55px;
+}
+
+.absolue.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0%);
+}
+
+div.alert {
+  width: 40%;
+}
+
+.alert-col {
+}
+
+.alert-col > .alert {
+  padding: 10px;
+  border-radius: 0;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.alert-col > .alert.display {
+  opacity: 1;
+}
+
+hr {
+  height: 2px;
+}
+
+.content-right > * {
+  float: right;
+}
+
+.form-btn {
+  min-width: 100px;
+  margin: 0 5px;
+  max-width: 200px;
+}
+
+img.avart-img {
+  max-width: 200px;
+}
+
+div.avatar-bg {
+  background: url({{user.profile.image.url}});
+  background-position: 50% 50%;
+  height: 200px;
+  width: 200px;
+  background-size: cover;
+  border-radius: 50%;
+  margin-left: calc(50% - 100px);
+}
+
+div.avatar {
+}
+
+</style>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>All editors</title>
+<div class="row">
+	
+	{% if editors %}
+	<h1 class="text-center btn btn-primary disabled btn-block" style="margin: 15px; border-radius: 0;">Showing all {{editors|length}} editors</h1>
+		{% for editor in editors %}
+		<div class="card" style="width: 250px; margin: 15px;">
+			<div class="card-body">
+				<h5 class="card-title">{{editor.user.username}}</h5>
+				<p class="card-text"><a href="{% url "filter_by_editor" editor.user.username %}">All from editor</a></p>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+	<h1 class="text-center btn btn-primary disabled btn-block" style="margin: 15px; border-radius: 0;">There are no editors</h1>
+	{% endif %}
+		
+	
+	
+	
+</div>
+
+{%  endblock %}

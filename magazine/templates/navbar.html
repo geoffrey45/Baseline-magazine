@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+{% block styles %}
+{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+</head>
+
+<body>
+    <nav  class="navbar navbar-dark bg-primary navbar-expand-md text-light justify-content-between form-inline shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">Baseline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            {% if request.user.is_authenticated %}
+                 <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <a class="nav-link" href="{% url "new_article" user.username %}">Write
+                    <span class="sr-only"></span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "profile" user.username%}">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/password/change">Change password</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+            {% else %}
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login">Login
+                      <span class="sr-only"></span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/signup">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+    </nav> 
+</body>
+
+</html>

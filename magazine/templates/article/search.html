@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load  bootstrap4%}
+{% block styles %}
+{% bootstrap_css %}
+{% endblock %}
+
+{% block content %}
+<title>Results: {{search_term}}</title>
+	{% if articles %}
+	<h1 class="text-center btn btn-primary disabled btn-block" style="margin-top: 20px; border-radius: 0;">Found {{articles|length}} articles marching query '{{search_term}}'</h1>
+{% endif %}
+{% for article in articles %}
+<div class="card mb-4">
+	<div style="height: 300px; background-image: url('{{article.article_image}}'); background-size: cover; background-position: center;"></div>
+  <div class="card-body">
+	<h2 class="card-title">{{article.title}}</h2>
+	<p class="card-text">{{article.post | safe |truncatechars_html:150}}</p>
+	<a href="{% url "article" article.slug %}" class="btn btn-primary">Read More &rarr;</a>
+  </div>
+  <div class="card-footer text-muted">
+	Posted on {{article.created_on}} by
+	<a href="#">{{article.editor}}</a>
+  </div>
+</div>
+{% empty %}
+<div class="div">
+	<h1 class="text-center btn btn-primary disabled btn-block" style="margin-top: 20px; border-radius: 0;">No articles matching query '{{search_term}}'</h1></div>
+{% endfor %}    
+{% endblock %}

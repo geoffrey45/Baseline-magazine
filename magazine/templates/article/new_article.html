@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load  bootstrap4%}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+  <title>{{user.username}}: New Article</title>
+  {{form.media}}
+</head>
+
+<body class="">
+  <div class="col">
+    <form  action="{%url 'new_article' user.username %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {% bootstrap_form form%}
+    <input type="submit" class="post btn btn-success btn-lg" value="Post">
+  </form>
+  </div>
+</body>
+</html>
+{% endblock %}

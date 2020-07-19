@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block content %}
+{% load bootstrap4 %}
+<title>{{post.title}}</title>
+<div class="container">
+  <div class="row" style="margin-top: 9px;">
+    <div class="col-md-12 card mb-4  mt-3 left  top" >
+      <div class="card-body">
+        <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
+        <div style="background-image: url('{{post.article_image}}'); background-position: center; background-size: cover; height: 300px;"></div>
+        <p class=" text-muted">{{ post.editor }} | {{ post.created_on }}</p>
+        <p class="card-text ">{{ post.post | safe }}</p>
+      </div>
+      {% if post.editor == request.user %}
+      <a style="margin-bottom: 20px;" href="{% url "update_article" post.slug %}" class="btn btn-primary">Update</a>
+    {% endif %}
+    </div>
+
+    <div class="col-md-12 card mb-4  mt-3 ">
+      <div class="card-body">
+      
+     
+        
+        <!-- comments -->
+        <h2>{{ comments.count }} comments</h2>
+
+        {% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.name }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% endfor %}
+        <div class="card-body">
+          {% if new_comment %}
+          <div class="alert alert-success" role="alert">
+            Your comment is awaiting moderation
+          </div>
+          {% else %}
+          <h3>Leave a comment</h3>
+          <form method="post" style="margin-top: 1.3em;">
+            {% bootstrap_form form %}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+.post-img{
+  width: 200px !important;
+  height: auto !important;
+}
+</style>
+{% endblock content %}

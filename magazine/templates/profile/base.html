@@ -1,0 +1,29 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% block styles %}
+	{% bootstrap_css %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	{% endblock %}
+</head>
+<body>
+	{% include 'navbar.html' %}
+	<div class="row" style="width: 100%;">
+		<div class="col col-md-7.5" style="margin-left: 20px;">
+		{% block content %} {% endblock %}
+		</div>
+		<div class="col col-md-4" style="margin-left: 0;">
+		</div>
+	</div>
+	
+	
+	{% block scripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	{% bootstrap_javascript %}
+	{% endblock %}
+</body>
+</html>

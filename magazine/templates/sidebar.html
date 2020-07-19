@@ -1,0 +1,100 @@
+{% block content %}
+<div class="">
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+			<form action="{% url "search_results" %}" method="get">
+				<div class="input-group">
+              		<input type="text" name="q" class="form-control" placeholder="Search for...">
+              		<span class="input-group-append">
+                <button class="btn btn-primary" type="submit">Go!</button>
+              </span>
+            </div>
+			</form>
+            
+          </div>
+		</div>
+		{% if user.is_authenticated %}
+		<div class="card my-4">
+			<h5 class="card-header">Hello {{user.username}}</h5>
+			<div class="card-body">
+			<a style="border-radius: 0;" href="{% url "profile" user.username%}" class="btn btn-primary">Profile</a>
+			<a style="border-radius: 0;" href="{% url "filter_by_editor" user.username%}" class="btn btn-primary">View all your articles</a>
+			<a style="border-radius: 0;" href="/logout" class="btn btn-primary">Logout</a>
+			</div>
+		  </div>
+
+		  {% if current_user_articles %}
+		  <div class="card my-4">
+			  <h5 class="card-header">Your articles</h5>
+		  
+		  <div class="card-body">
+			  <div class="card-subtitle sm text-muted" style="font-size: small;">You have {{current_user_articles|length}} published articles</div>
+			<div class="row">
+			  <div class="">
+				<ul class="mb-0" style="list-style-type: none;">
+				  {% for article in  current_user_articles%}
+				  <li>
+					  <a href="{% url "update_article" article.slug %}"><span><i class="fa fa-edit"></i></span></a>
+					  <a href="{% url "delete_article" article.slug %}"><span><i class="fa fa-trash"></i></span></a>
+					  <a href="{% url "article" article.slug %}">{{article.title}}</a>
+				  </li>
+				  {% endfor %}
+				</ul>
+			  </div>
+			</div>
+		  </div>
+	  </div>
+	  {% else %}
+	  <div class="card my-4">
+		  <h5 class="card-header">Your Articles</h5>
+		  <div class="card-body">
+			<div class="row">
+			  <div class="">
+				<div class=" mb-0" style="margin-left: 20px;">
+				  <a style="border-radius: 0; color: white;" class="btn disabled btn-primary">You have no published articles</a>
+				  <a style="border-radius: 0;" href="{% url "new_article" user.username %}" class="btn btn-primary">Publish</a>
+				</div>
+				</div>
+			</div>
+		  </div>
+		</div>
+	  {% endif %}
+
+		{% endif %}
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Sort by:</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="">
+                <div class="">
+					<a style="margin-left: 15px; border-radius: 0;" class="btn btn-primary" href="{% url "all_editors" %}">Editors</a>
+				</div>
+                </div>
+            </div>
+          </div>
+		</div>
+		
+		{% if user.is_authenticated %}
+			<div class="card my-4">
+			<h5 class="card-header">Account Actions</h5>
+			<div class="card-body">
+			  <div class="row">
+				<div class="">
+				  <div class="">
+					<a style="margin-left: 15px; border-radius: 0;" class="btn btn-primary" href="{% url "update_profile" user.username %}">Update profile</a>
+					<a style="margin-left: 15px; border-radius: 0;" class="btn btn-primary" href="{% url "delete_user" user.username %}">delete account</a>
+				  </div>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		
+
+		{% endif %}
+			
+		
+		
+{% endblock %}
+</div>
