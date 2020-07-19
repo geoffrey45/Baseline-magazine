@@ -131,7 +131,7 @@ class magazineApiModel(models.Model):
     editor = models.CharField(max_length=100)
     tags = models.CharField(max_length=200,blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    article_image = models.ImageField(upload_to='articles/')
+    article_image = models.TextField()
     photo_credits = models.CharField(max_length=100)
 
     def __str__(self):

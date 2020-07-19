@@ -4,5 +4,5 @@ from .models import magazineApiModel
 class apiSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = magazineApiModel
-		fields = ('id', 'title','post','editor','taag','article_imagee','photo_credits')
+		fields = ('id', 'title','post','editor','tags','article_image','photo_credits')
 
